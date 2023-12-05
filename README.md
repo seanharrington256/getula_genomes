@@ -38,7 +38,7 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 
 <br>
 
-## Variant calling and filtering
+### Variant calling and filtering
 
 1. `var_call_ratmapped_all.slurm` calls variants from the bam files with duplicates removed. This is done for each scaffold of the reference genome separately here as a slurm job array.
 
@@ -53,7 +53,19 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` to make plots.
 
 
-## add details of filtering
+- **add details of filtering**
+
+<br>
+
+### Pixy - get Fst, dxy, and pi across the genome Pixy requires a vcf file with all sites to run, need to generate this.
+
+1. `var_call_allsites.slurm` calls variants from the bam files with duplicates removed, generating a vcf with all sites, including invariants. This is done for each scaffold of the reference genome separately here as a slurm job array.
+
+2. `sort_allsites_NC_vcfs.slurm` sorts each vcf. After running this script, delete unsorted vcf files manually. I removed this from the script in case part of it fails.
+
+3. `filter_each_vcf_allsites.slurm` filters all of the vcf files and tabix index each.
+
+4. `Combine_NC_vcf_get_stats_allsites.slurm` combines the pre-filtered and post-filtered vcfs from NC scaffolds and gets some statistics about the vcf files and then runs `r_vcf_stats_cmdline.R` to make plots.
 
 
 <br>
