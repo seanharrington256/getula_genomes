@@ -3,7 +3,7 @@
 #SBATCH --job-name BWA_rat
 #SBATCH -A inbreh
 #SBATCH -t 0-36:00:00
-#SBATCH --nodes=24
+#SBATCH --nodes=1
 #SBATCH --cpus-per-task=24
 #SBATCH --mem=0G
 #SBATCH --mail-type=ALL

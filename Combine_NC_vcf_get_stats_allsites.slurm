@@ -2,11 +2,10 @@
 
 #SBATCH --job-name vcf_comb_stats
 #SBATCH -A inbreh
-#SBATCH -p teton
 #SBATCH -t 3-00:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=25G
+#SBATCH --mem=24G
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=sharrin2@uwyo.edu
 #SBATCH -e errs_outs/err_out_vcf/err_vcfstats_%A.err
@@ -64,8 +63,9 @@ for VCFFile in "$PREFILTCOMB" "$POSTFILTCOMB"; do
 	bcftools index $VCFFile
 	
 	
-	##calc allele frequency
-	vcftools --gzvcf $VCFFile --freq2 --max-alleles 2 --out $OUT/$OUTFILE
+	##calc allele frequency - 
+	##  had to add --min-alleles 2 here because otherwise when generating all sites vcf get a lot of invariants, which have freq of 1 and don't show up as 2 columns, causes problems trying to summarize in R
+	vcftools --gzvcf $VCFFile --freq2 --max-alleles 2 --min-alleles 2 --out $OUT/$OUTFILE
 	##calc mean depth/individual
 	vcftools --gzvcf $VCFFile --depth --out $OUT/$OUTFILE
 	
@@ -84,8 +84,26 @@ for VCFFile in "$PREFILTCOMB" "$POSTFILTCOMB"; do
 	vcftools --gzvcf $VCFFile --het --out $OUT/$OUTFILE
 	
 	
-	# Use R script to make plots:
-	Rscript r_vcf_stats_cmdline.R $OUT $OUTFILE
+	# Use R script to make plots: # the unfiltered files are huge, do it just for filtered outside the loop
+	# Rscript r_vcf_stats_cmdline.R $OUT $OUTFILE
 done
+
+
+### just plot the post-filtered:
+
+VCFFile="$POSTFILTCOMB"
+
+VCF_W_EXT=$(basename "$VCFFile")
+
+VCFNAME="${VCF_W_EXT%.vcf.gz}"
+	
+OUT=${VCFSTATSDIR}${VCFNAME}
+OUTFILE=vcf_stats_${VCFNAME}
+		
+	
+# Use R script to make plots:
+Rscript r_vcf_stats_cmdline.R $OUT $OUTFILE
+
+
 
 

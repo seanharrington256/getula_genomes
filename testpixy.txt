@@ -1,0 +1,11 @@
+salloc -A getpop -t 0-03:00 --mem=10G --cpus-per-task=8
+
+module load miniconda3/23.1.0
+
+conda activate pixy
+
+pixy --stats pi fst dxy \
+--vcf /project/getpop/vcf_allsites/filt_scafs_vcfs/filtered_sort_NC_045554.1_RagTag.vcf.gz \
+--populations /project/getpop/pixy_test/INDS_POP_EAST_WEST.txt \
+--window_size 10000 \
+--n_cores 8 

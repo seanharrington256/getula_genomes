@@ -53,7 +53,7 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` to make plots.
 
 
-- **add details of filtering**
+- **add details of filtering parameters**
 
 <br>
 
@@ -73,13 +73,36 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 <br>
 
 
+## tests/development:
+
+- `testpixy.txt` code for testing pixy out interactively
+
+Installing pixy required extra messing around in conda:
+
+```{bash}
+# standard pixy install
+conda create -n pixy -y
+conda activate pixy
+conda install --yes -c conda-forge pixy python=3.8 -y
+conda install --yes -c bioconda htslib -y
+
+# install numpy and samtools with versions that work with pixy
+conda install numpy=1.21 -y
+conda install -c bioconda samtools=1.9 --force-reinstall -y
+```
+
+
 
 
 ## To do
-- Check that I have stats of the filtered vcf
-- generate all sites vcf for pixy
+- Check that I have stats of the filtered vcf - pretty sure I do
+- double check that the vcf is the way I want it
+	- remove any individuals with high missing data?
+- plot pixy - modify R code on the website
 
 
+## Notes to me:
+`filter_each_vcf_allsites_TEST.slurm` tests to make sure that including min alleles as zero doesn't get rid of things I want to keep by removing that argument altogether - it seems that it does not matter, file sizes are identical.
 
 
 

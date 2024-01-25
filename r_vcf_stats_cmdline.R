@@ -25,6 +25,7 @@ var_qual <- read_delim(paste0(file_basename, ".lqual"), delim = "\t",
 #plot data
 variant_qual <- ggplot(var_qual, aes(qual)) + geom_density(fill = "dodgerblue1", colour = "black", alpha = 0.3)
 
+rm(var_qual)
 
 #variant mean depth
 var_depth <- read_delim(paste0(file_basename, ".ldepth.mean"), delim = "\t",
@@ -36,6 +37,8 @@ variant_depth <- ggplot(var_depth, aes(mean_depth)) + geom_density(fill = "dodge
 #Stats
 var_dep <- summary(var_depth$mean_depth)
 
+rm(var_depth)
+
 
 #variant missingness
 var_miss <- read_delim(paste0(file_basename, ".lmiss"), delim = "\t",
@@ -46,6 +49,7 @@ variant_miss<- ggplot(var_miss, aes(fmiss)) + geom_density(fill = "dodgerblue1",
 #stats
 miss <- summary(var_miss$fmiss)
 
+rm(var_miss)
 
 #allele frequency for minor
 var_freq <- read_delim(paste0(file_basename, ".frq"), delim = "\t",
@@ -59,6 +63,8 @@ variant_freq <- ggplot(var_freq, aes(maf)) + geom_density(fill = "dodgerblue1", 
 
 #view data
 frequency <- summary(var_freq$maf)
+
+rm(var_freq)
 
 #individual based stats
 
