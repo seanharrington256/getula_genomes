@@ -67,6 +67,8 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 
 4. `Combine_NC_vcf_get_stats_allsites.slurm` combines the pre-filtered and post-filtered vcfs from NC scaffolds and gets some statistics about the vcf files and then runs `r_vcf_stats_cmdline.R` to make plots.
 
+5. `Pixy.slurm` runs pixy as a job array across all NC scaffolds.
+
 
 <br>
 <br>
@@ -104,7 +106,19 @@ conda install -c bioconda samtools=1.9 --force-reinstall -y
 ## Notes to me:
 `filter_each_vcf_allsites_TEST.slurm` tests to make sure that including min alleles as zero doesn't get rid of things I want to keep by removing that argument altogether - it seems that it does not matter, file sizes are identical.
 
+# plotting pixy output:
+
+```
+salloc -A getpop -t 0-03:00 --mem=1G --cpus-per-task=1
+module load gcc/12.2.0 r/4.2.2
+# start R and install tidyverse if necessary, then quit
+cd /project/getpop/scripts
+Rscript plot_pixy_cmd.R /project/getpop/pixy_out100 /project/getpop/pixy_plots
+```
 
 
+- need to tabix each file before pixy: format is: tabix <vcf_file> # samtools needs to be loaded up 
 
 
+- what is the most appropriate window size for this??
+- do we want to run things just on NC chromosomes? Or on all, including the really small ones
