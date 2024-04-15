@@ -2,7 +2,8 @@
 
 
 # on cluster, may need to do this to install packages: options(download.file.method="wget")
-library(terra) # I need to load up my conda env and the rgdal module on the cluster to make this work
+# I need to load up my conda env and the rgdal module on the cluster to make this work
+library(terra) 
 library(psych)
 
 # set up a bunch of directories

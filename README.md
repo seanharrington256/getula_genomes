@@ -110,15 +110,34 @@ Rscript plot_pixy_cmd.R /project/getpop/pixy_out100 /project/getpop/pixy_plots
 cd /project/getpop/vcf_rat_map_all
 module load miniconda3
 conda activate plink # my plink conda env
-plink --vcf filtered_ratmapAll_NConly.vcf.gz --recode --out /project/getpop/lfmm/filtered_ratmapAll_NConly --allow-extra-chr
+plink --vcf filtered_ratmapAll_NConly.vcf.gz --recode12 --out /project/getpop/lfmm/filtered_ratmapAll_NConly --allow-extra-chr
 ```
 
 extract environmental data using `extract_enviro_data.R`
 
+* Testing:
 
+to see how long LFMM will take, copied the `filtered_sort_rat_map_all_NC_045554.1_RagTag.vcf.gz` file into lfmm directory, filter to complete data with vcftools:
 
+## note that this includes the wrong recode without 12
 
+```
+cd /project/getpop/lfmm
+module load vcftools
+vcftools --gzvcf filtered_sort_rat_map_all_NC_045554.1_RagTag.vcf.gz --max-missing 1.0 --recode --recode-INFO-all --out filtered_SNPs_no_missing_data
 
+# then convert to plink
+module load miniconda3
+conda activate plink # my plink conda env
+plink --vcf filtered_SNPs_no_missing_data.recode.vcf --recode --out /project/getpop/lfmm/no_missingNC_045554 --allow-extra-chr
+```
+
+or for the file with missing data:
+
+```
+cd /project/getpop/vcf_rat_map_all/filt_scafs_vcfs
+plink --vcf filtered_sort_rat_map_all_NC_045557.1_RagTag.vcf.gz --recode12 --out /project/getpop/lfmm/rat_map_all_NC_045557 --allow-extra-chr
+```
 
 <br>
 <br>
@@ -166,8 +185,8 @@ cd /project/getpop/scripts
 Rscript plot_pixy_cmd.R /project/getpop/pixy_out100 /project/getpop/pixy_plots
 ```
 
-
-
+## may want to re-run variant calling, etc. with MVZ with huge num reads subsampled
+- filter to biallelic only in filtering? thought I had this done, but LEA finds SNPs with a single state
 
 
 - need to tabix each file before pixy: format is: tabix <vcf_file> # samtools needs to be loaded up 

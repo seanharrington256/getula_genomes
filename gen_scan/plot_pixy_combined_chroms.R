@@ -87,7 +87,7 @@ pixy_df <- pixy_to_long(pixy_files)
 pixy_df$chrom_name <- pixy_df$chromosome
 pixy_df$chromosome <- as.numeric(as.factor(pixy_df$chromosome))
 
-# get out Fst values and find upper 5% quantile
+# get out Fst values and find upper quantile
 all_fst <- filter(pixy_df, statistic == "avg_wc_fst")$value
 upper_99th <- quantile(all_fst, probs = 0.99)
 
