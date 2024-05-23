@@ -5,6 +5,7 @@
 library(LEA)
 library(tidyr)
 library(ggplot2)
+library(data.table)
 
 
 # set up some paths
@@ -16,17 +17,20 @@ env_file <- "/pfs/tc1/project/getpop/metadata/enviro_data/getula_coords_red_envi
 # ped_file <- "filtered_sort_rat_map_all_NC_045557.1_RagTag.ped"
 
 # test on small chromosome with no missing data
-ped_file <- "no_missingNC_045554.ped"
+# ped_file <- "no_missingNC_045554.ped"
 
+# test on a single chrom imputed in pca_snmf_getula.R
 setwd(lfmm_dir)
 ind_names <- readLines("ind_names_lfmm.txt")
 
 
 # convert the ped file
-ped2lfmm(ped_file, force = FALSE)
-lfmm_file <- gsub("ped$", "lfmm", ped_file)
+# ped2lfmm(ped_file, force = FALSE)
+# lfmm_file <- gsub("ped$", "lfmm", ped_file)
+lfmm_file <- "rat_map_all_NC_045557.lfmm_imputed.lfmm"
 
-num_variants <- 31231 # for the single chromosome, no missing data
+# get the number of variants for bonferroni correction below
+num_variants <- ncol(fread(lfmm_file))
 
 # read in environmental data:
 env_data <- read.csv(env_file)

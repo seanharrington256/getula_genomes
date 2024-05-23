@@ -3,6 +3,9 @@
 # load up stuff on cluster:
 # module load gcc r/4.2.2 rstudio
 # module load udunits/2.2.28 gdal/3.6.1
+# make sure base conda isn't activated/doesn't have any weird stuff in it
+
+
 
 library(LEA)
 library(ggplot2)
@@ -29,10 +32,12 @@ ind_names <- readLines("ind_names_lfmm.txt")
 #### Some overall setup for mapping and plotting
 
 # make a list of colors:
-colors_6<-c("V1" = "red", "V2" = "blue", "V3" = "white", "V4" = "purple", "V5" = "pink", "V6" = "yellow")
+colors_6<-c("V1" = "red", "V2" = "blue", "V3" = "hotpink", "V4" = "purple", "V5" = "orange", "V6" = "yellow")
 
 ## Read in coordinates for plotting farther down
 coords<-read.csv(coords_file, header=TRUE, row.names=NULL) # coordinates of everything I sequenced and many I didn't
+# make sure coords are in the same order as the genetic data
+coords <- coords[match(ind_names, coords$number),]
 
 
 ################################################# map data
@@ -62,11 +67,6 @@ cropped_map <- st_crop(to_map_val, xmin = xmin, xmax = xmax, ymin = ymin, ymax =
 basemap <- ggplot() +
   geom_sf(data = cropped_map, fill = "gray95", color = "black") +
   theme_minimal()
-
-
-
-
-
 
 
 
@@ -123,8 +123,59 @@ pdf(file = "crossentropy.pdf", width = 8, height=5)
 plot(obj.at, col = "lightblue", cex = 1.2, pch = 19)
 dev.off()
 
+k <- 2
+
+ce <- cross.entropy(obj.at, K = k) 
+best.run <- which.min(ce) # find the run with the lowest cross validation error
+
+## Get the snmf Q matrix from the best run at this k
+qmatrix <- Q(obj.at, K = k, run = best.run)
+admix<-as.data.frame(qmatrix)
+
+# get the coordinate and admix data into a single dataframe
+for_pies <- cbind(coords, admix)
+
+ce <- cross.entropy(obj.at, K = k) 
+best.run <- which.min(ce) # find the run with the lowest cross validation error
+
+## Get the snmf Q matrix from the best run at this k
+qmatrix <- Q(obj.at, K = k, run = best.run)
+admix<-as.data.frame(qmatrix)
+
+# get the coordinate and admix data into a single dataframe
+for_pies <- cbind(snmf_coords, admix)
+
+# convert the coordinates into the target projection
+for_pies_sf <- st_as_sf(for_pies, coords = c("lon", "lat"), crs = 4326) # Create an sf object with WGS84 coordinates
+for_pies_sf_transformed <- st_transform(for_pies_sf, target_crs) # Transform to the target CRS
+for_pies_transformed_df <- st_coordinates(for_pies_sf_transformed) %>% # Convert transformed sf object back to dataframe
+  as.data.frame() %>%
+  setNames(c("lon", "lat"))
+for_pies_transformed_df <- cbind(for_pies[, setdiff(names(for_pies), c("lon", "lat"))], for_pies_transformed_df) # Combine with other columns from the original dataframe
 
 
+# Get the right number of colors
+num_cols <- length(grep("^V", colnames(for_pies_transformed_df))) # how many V columns containing proportion of cluster memberships?
+colors <- colors_6[1:num_cols]
+
+# set pie size
+pie_size <- 1
+
+# plot
+snmf_plot <- basemap +
+  geom_scatterpie(data = for_pies_transformed_df, aes(x=lon, y=lat), cols = grep("^V", colnames(for_pies_transformed_df), value = TRUE), size = 0.01, pie_scale = pie_size) + # plot the pies - use grep to get the column names that start with V, these are the admix proportions
+  scale_fill_manual(values = colors) +
+  guides(fill="none") + # get rid of the legend for admixture
+  coord_sf(crs = target_crs) + # set target projection
+  # ggtitle(sci_name) + # set title to the species
+  theme(plot.title = element_text(face="bold.italic", hjust = 0.5), # format the title
+        axis.title.x = element_blank(),  # Remove x-axis label
+        axis.title.y = element_blank())  # Remove y-axis label
+snmf_plot
+
+
+# Impute the missing genotypes
+impute(obj.at, geno_file, method = 'mode', K = k, run = best.run)
 
 
 

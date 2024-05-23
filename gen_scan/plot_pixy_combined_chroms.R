@@ -2,9 +2,20 @@
 library(tidyverse)
 
 # Set Working directory
-pixy_dir <- "/pfs/tc1/project/getpop/pixy_out/pixy_out100_combined/"
-out_dir <- "/pfs/tc1/project/getpop/pixy_out/plots_pixy100_combined/"
+
+## Set up file paths for 100 kb windows
+# pixy_dir <- "/pfs/tc1/project/getpop/pixy_out/pixy_out100_combined/"
+# out_dir <- "/pfs/tc1/project/getpop/pixy_out/plots_pixy100_combined/"
+# outfile_name <- "pixy100_combined"
+
+## Set up file paths for 10 kb windows
+pixy_dir <- "/pfs/tc1/project/getpop/pixy_out/pixy_out10_combined/"
+out_dir <- "/pfs/tc1/project/getpop/pixy_out/plots_pixy10_combined/"
+outfile_name <- "pixy10_combined"
+
+
 setwd(pixy_dir)
+
 
 
 # # Define the function to extract unique chromosome names
@@ -89,7 +100,7 @@ pixy_df$chromosome <- as.numeric(as.factor(pixy_df$chromosome))
 
 # get out Fst values and find upper quantile
 all_fst <- filter(pixy_df, statistic == "avg_wc_fst")$value
-upper_99th <- quantile(all_fst, probs = 0.99)
+upper_99th <- quantile(all_fst, probs = 0.99, na.rm = TRUE)
 
 # make a column that is chromosome and position together
 pixy_df <- mutate(pixy_df, chr_pos = paste(chromosome, window_pos_1, sep = "_"))
@@ -164,13 +175,13 @@ plot_genome_wide_pixy <- function(pixy_df, outlier_winds){
 }
 
 # write to file
-outfile <- paste0(out_dir, "pixy100_combined.pdf")
+outfile <- paste0(out_dir, outfile_name, ".pdf")
 pdf(file = outfile, width = 8, height = 6.4)
 plot_genome_wide_pixy(pixy_df, top_01_fs_twinds)
 dev.off()
 
 #plot png
-outfile_png <- paste0(out_dir, "pixy100_combined.png")
+outfile_png <- paste0(out_dir, outfile_name, ".png")
 png(file = outfile_png, width = 8, height = 6.5, units = "in", res = 750)
 plot_genome_wide_pixy(pixy_df, top_01_fs_twinds)
 dev.off()

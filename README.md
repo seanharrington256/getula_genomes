@@ -198,5 +198,111 @@ Rscript plot_pixy_cmd.R /project/getpop/pixy_out100 /project/getpop/pixy_plots
 - allele surfing??    Pereira P., Teixeira J., Velo-Antón G. 2018. Allele surfing shaped the genetic structure of the European pond turtle via colonization and population expansion across the Iberian Peninsula from Africa. J. Biogeogr. 45:2202–2215.
 
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+### Prepping to re-do things, starting with downsampling MVZ137799 reads
+
+# Subsample reads for MVZ137799 - started at ~80x coverage, top get down to ~30x, subsample 180000000 reads
+
+```
+# some directory management
+cd /project/getpop/trim_out_bbduk_adapters
+mv trim_read_MVZ137799 trim_read_MVZ137799_not_downsampled
+mkdir trim_read_MVZ137799
+
+cd /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled
+
+# FASTQ R1
+seqtk sample -s 123 paired-MVZ137799_S64_L003_R1_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
+gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
+
+# FASTQ R2
+seqtk sample -s 123 paired-MVZ137799_S64_L003_R2_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
+gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
+
+mv /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled /project/getpop/
+```
+
+<br>
+
+
+## Coverage issues
+
+A bunch of individuals are like 8x. This is not ideal. Try out some different filtering on a single allsites scaffold:
+
+```
+cd /project/getpop/vcf_allsites
+salloc -A inbreh -t 0-05:00 --mem=48G --cpus-per-task=1
+module load gcc vcftools
+```
+- missing 20%
+	all sites	
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 10 --max-missing 0.8 --max-alleles 2`
+	kept 770,350 out of a possible 10637025 Sites
+	Biallelic	
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 10 --max-missing 0.8 --max-alleles 2 --min-alleles 2`
+	kept 101,750 out of a possible 10637025 Sites
+	
+	13% variable sites
+
+- missing 20% but with depth cutoff of 8 instead of 10
+	minDP 8  !!!!! a lower depth cutoff can keep WAY more sites
+	all sites
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 8 --max-missing 0.8 --max-alleles 2`
+	kept 3,433,603 out of a possible 10637025 Sites
+	
+	biallelic
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 8 --max-missing 0.8 --max-alleles 2 --min-alleles 2`
+	kept 330,651 out of a possible 10637025 Sites	
+	
+	9% variable sites
+		
+		
+- missing 20% but with depth cutoff of 7???
+	minDP 7
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 7 --max-missing 0.8 --max-alleles 2`
+	kept 5,569,858 out of a possible 10,637,025 Sites
+
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 7 --max-missing 0.8 --max-alleles 2 --min-alleles 2`
+	kept 517,336 out of a possible 10637025 Sites	
+	
+	9.2% variable sites
+	
+
+
+- missing 30%, 10x
+	all sites
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 10 --max-missing 0.7 --max-alleles 2`
+	kept 2,357,569 out of a possible 10637025 Sites
+
+	Biallelic
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 10 --max-missing 0.7 --max-alleles 2 --min-alleles 2`
+	kept 243,355 out of a possible 10637025 Sites
+
+	10% variable sites
+
+
+- missing 30%, 8x
+	all sites
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 8 --max-missing 0.7 --max-alleles 2`
+	kept 6,204,385 out of a possible 10637025 Sites
+
+	Biallelic
+	`vcftools --gzvcf  sort_NC_045557.1_RagTag.vcf.gz --minDP 8 --max-missing 0.7 --max-alleles 2 --min-alleles 2`
+	kept 578,425 out of a possible 10637025 Sites	
+
+	9.3% variable sites
+
+
+
+Try out same on 
+
+
+
+
 
 
