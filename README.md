@@ -302,6 +302,16 @@ module load gcc vcftools
 Try out same on 
 
 
+## Go back and map the reads to the Arizona genome and see if coverage was better
+
+
+## Directory Arizona_mapping
+
+### Mapping, duplicate removal
+
+* `mapping` directory
+
+- `BWA_to_Arizona.slurm` runs BWA to map the trimmed reads to the *Arizona elegans* genome from HERE.  **DROP IN LINK TO GENOME**
 
 
 
