@@ -22,8 +22,10 @@ cd /project/getpop/trim_out_bbduk_adapters
 #New ref for population loci assesment and later annotation
 REF=/project/getpop/ref/GCA_022577455.1_rAriEle1.0.p_genomic.fna
 
-
+# Output directory
 OUT_DIR=/project/getpop/bwa_arizona
+
+
 
 # use a loop to find all the files in trimmed_reads that end
 #     in fastq.gz and assign them to a bash array

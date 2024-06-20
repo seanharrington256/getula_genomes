@@ -40,7 +40,6 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 
 3. `flagstat_ratmapped.slurm` runs `samtools flagstat` on each bam file to get some mapping stats.
 
-
 4. `picard_rmd_ratmapped.slurm` runs `picard MarkDuplicates` to identify and remove duplicate reads.
 
 
@@ -311,8 +310,35 @@ Try out same on
 
 * `mapping` directory
 
-- `BWA_to_Arizona.slurm` runs BWA to map the trimmed reads to the *Arizona elegans* genome from HERE.  **DROP IN LINK TO GENOME**
+1. `BWA_to_Arizona.slurm` runs BWA to map the trimmed reads to the *Arizona elegans* genome from HERE.  **DROP IN LINK TO GENOME**
+
+2. `idx_arizona_map_bam.slurm` indexes each of the .bam files created by the previous script.
+
+3. `flagstat_arizona_map.slurm` runs `samtools flagstat` on each bam file to get some mapping stats.
+
+4. `picard_rmd_arizona_map.slurm` runs `picard MarkDuplicates` to identify and remove duplicate reads.
 
 
+### Variant calling and filtering
 
+* `var_call` directory
+
+1. `var_call_arizona_mapAllSites.slurm` calls variants from the bam files with duplicates removed. This is done for each scaffold of the reference genome separately here as a slurm job array. Calls allsites to be used for pixy or filtered to only variant sites as desired.
+
+2. `sort_arimappedAllSites_vcfs.slurm` sorts each of the resulting vcf files generated in the previous step.
+
+3. `combine_arimapAllSites_vcf.slurm` combines the individual scaffold vcf files into a single vcf of the whole genome. 
+
+**RUNNING NOW** ^
+
+4. `get_vcf_stats_arimapAllSites.slurm` SCRIPT FILE EXISTS, STILL NEEDS TO BE EDITED AND RUN
+
+
+- just to test out:
+
+`var_call_arizona_mapAllSites_NORMD.slurm` calls variants on the bam files that have not had markduplicates run
+
+`sort_arimappedAllSites_vcfs_NORMD.slurm` sorts the vcf files. **RUNNING NOW**
+
+`combine_arimapAllSites_vcf_NORMD.slurm` combines those into whole genome NOT MADE YET
 

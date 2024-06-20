@@ -1,5 +1,6 @@
 # ignore error and out files
 errs_outs/
+Arizona_mapping/mapping/bwa_errs_outs
 
 # ignore old scripts no longer in use
 XX_old_scripts/
