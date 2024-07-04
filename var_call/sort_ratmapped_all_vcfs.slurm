@@ -8,8 +8,8 @@
 #SBATCH --mem=25G
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=sharrin2@uwyo.edu
-#SBATCH -e err_out_vcf/err_sort_ratmapAll_vcfs_%A_%a.err
-#SBATCH -o err_out_vcf/std_sort_ratmapAll_vcfs_%A_%a.out
+#SBATCH -e /project/getpop/scripts/errs_outs/err_out_vcf/err_sort_ratmapAll_vcfs_%A_%a.err
+#SBATCH -o /project/getpop/scripts/errs_outs/err_out_vcf/std_sort_ratmapAll_vcfs_%A_%a.out
 #SBATCH --array=1-199
 
 #load packages
