@@ -5,11 +5,11 @@
 #SBATCH -t 0-36:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=24
-#SBATCH --mem=0G
+#SBATCH --mem=64G
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=sharrin2@uwyo.edu
-#SBATCH -e bwa_errs_outs/err_BWA_rat_%A_%a.err
-#SBATCH -o bwa_errs_outs/std_BWA_rat_%A_%a.out
+#SBATCH -e /project/getpop/scripts/errs_outs/bwa_errs_outs/err_BWA_rat_%A_%a.err
+#SBATCH -o /project/getpop/scripts/errs_outs/bwa_errs_outs/std_BWA_rat_%A_%a.out
 #SBATCH --array=1-41
 
 
@@ -56,4 +56,5 @@ SAMP_ID=$(echo $sample | cut -d '_' -f 3)
 # Run bwa on each file using the mem algorithm, then pipe output to samtools to convert to bam and sort the bam file
 bwa mem -M -t 24 $REF paired*_R1_* paired*_R2_* | samtools view - -b | samtools sort - -o $OUT_DIR/${SAMP_ID}_sort.bam
 
-
+# Index the bam file
+samtools index -@ 24 $OUT_DIR/${SAMP_ID}_sort.bam

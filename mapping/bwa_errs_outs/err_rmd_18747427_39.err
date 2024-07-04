@@ -1,0 +1,547 @@
+INFO	2024-07-03 09:22:39	MarkDuplicates	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    MarkDuplicates -REMOVE_DUPLICATES true -ASSUME_SORTED true -VALIDATION_STRINGENCY SILENT -INPUT MVZ175927_sort.bam -OUTPUT /project/getpop/bwa_ratsnake/rmd/MVZ175927.rmd.bam -METRICS_FILE /project/getpop/bwa_ratsnake/rmd/MVZ175927.rmd.bam.metrics
+**********
+
+
+09:22:40.406 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/apps/u/spack/gcc/12.2.0/picard/2.26.2-xrdth7g/bin/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Wed Jul 03 09:22:40 MDT 2024] MarkDuplicates INPUT=[MVZ175927_sort.bam] OUTPUT=/project/getpop/bwa_ratsnake/rmd/MVZ175927.rmd.bam METRICS_FILE=/project/getpop/bwa_ratsnake/rmd/MVZ175927.rmd.bam.metrics REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=SILENT    MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=50000 MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=8000 SORTING_COLLECTION_SIZE_RATIO=0.25 TAG_DUPLICATE_SET_MEMBERS=false REMOVE_SEQUENCING_DUPLICATES=false TAGGING_POLICY=DontTag CLEAR_DT=true DUPLEX_UMI=false ADD_PG_TAG_TO_READS=true DUPLICATE_SCORING_STRATEGY=SUM_OF_BASE_QUALITIES PROGRAM_RECORD_ID=MarkDuplicates PROGRAM_GROUP_NAME=MarkDuplicates READ_NAME_REGEX=<optimized capture of last three ':' separated fields as numeric values> OPTICAL_DUPLICATE_PIXEL_DISTANCE=100 MAX_OPTICAL_DUPLICATE_SET_SIZE=300000 VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Wed Jul 03 09:22:40 MDT 2024] Executing as sharrin2@b523 on Linux 4.18.0-513.11.1.el8_9.x86_64 amd64; OpenJDK 64-Bit Server VM 11.0.15+10; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.26.2
+INFO	2024-07-03 09:22:40	MarkDuplicates	Start of doWork freeMemory: 397763432; totalMemory: 405536768; maxMemory: 6487212032
+INFO	2024-07-03 09:22:40	MarkDuplicates	Reading input file and constructing read end information.
+INFO	2024-07-03 09:22:40	MarkDuplicates	Will retain up to 23504391 data points before spilling to disk.
+INFO	2024-07-03 09:22:45	MarkDuplicates	Read     1,000,000 records.  Elapsed time: 00:00:05s.  Time for last 1,000,000:    5s.  Last read position: NC_045541.1_RagTag:5,855,777
+INFO	2024-07-03 09:22:45	MarkDuplicates	Tracking 33487 as yet unmatched pairs. 2688 records in RAM.
+INFO	2024-07-03 09:22:49	MarkDuplicates	Read     2,000,000 records.  Elapsed time: 00:00:08s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:12,519,409
+INFO	2024-07-03 09:22:49	MarkDuplicates	Tracking 53581 as yet unmatched pairs. 4334 records in RAM.
+INFO	2024-07-03 09:22:52	MarkDuplicates	Read     3,000,000 records.  Elapsed time: 00:00:12s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:19,328,061
+INFO	2024-07-03 09:22:52	MarkDuplicates	Tracking 74607 as yet unmatched pairs. 5957 records in RAM.
+INFO	2024-07-03 09:22:55	MarkDuplicates	Read     4,000,000 records.  Elapsed time: 00:00:15s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:26,265,941
+INFO	2024-07-03 09:22:55	MarkDuplicates	Tracking 96412 as yet unmatched pairs. 7499 records in RAM.
+INFO	2024-07-03 09:22:58	MarkDuplicates	Read     5,000,000 records.  Elapsed time: 00:00:18s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:33,218,035
+INFO	2024-07-03 09:22:58	MarkDuplicates	Tracking 117212 as yet unmatched pairs. 8851 records in RAM.
+INFO	2024-07-03 09:23:02	MarkDuplicates	Read     6,000,000 records.  Elapsed time: 00:00:21s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:40,292,987
+INFO	2024-07-03 09:23:02	MarkDuplicates	Tracking 137757 as yet unmatched pairs. 10026 records in RAM.
+INFO	2024-07-03 09:23:06	MarkDuplicates	Read     7,000,000 records.  Elapsed time: 00:00:25s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:47,258,512
+INFO	2024-07-03 09:23:06	MarkDuplicates	Tracking 159564 as yet unmatched pairs. 11151 records in RAM.
+INFO	2024-07-03 09:23:09	MarkDuplicates	Read     8,000,000 records.  Elapsed time: 00:00:28s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:54,091,365
+INFO	2024-07-03 09:23:09	MarkDuplicates	Tracking 179135 as yet unmatched pairs. 11931 records in RAM.
+INFO	2024-07-03 09:23:12	MarkDuplicates	Read     9,000,000 records.  Elapsed time: 00:00:31s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:61,033,275
+INFO	2024-07-03 09:23:12	MarkDuplicates	Tracking 200084 as yet unmatched pairs. 12738 records in RAM.
+INFO	2024-07-03 09:23:15	MarkDuplicates	Read    10,000,000 records.  Elapsed time: 00:00:34s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:68,146,014
+INFO	2024-07-03 09:23:15	MarkDuplicates	Tracking 218402 as yet unmatched pairs. 13315 records in RAM.
+INFO	2024-07-03 09:23:18	MarkDuplicates	Read    11,000,000 records.  Elapsed time: 00:00:37s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:75,235,636
+INFO	2024-07-03 09:23:18	MarkDuplicates	Tracking 238054 as yet unmatched pairs. 13539 records in RAM.
+INFO	2024-07-03 09:23:22	MarkDuplicates	Read    12,000,000 records.  Elapsed time: 00:00:42s.  Time for last 1,000,000:    4s.  Last read position: NC_045541.1_RagTag:82,341,600
+INFO	2024-07-03 09:23:22	MarkDuplicates	Tracking 257895 as yet unmatched pairs. 13885 records in RAM.
+INFO	2024-07-03 09:23:25	MarkDuplicates	Read    13,000,000 records.  Elapsed time: 00:00:45s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:89,271,292
+INFO	2024-07-03 09:23:25	MarkDuplicates	Tracking 276024 as yet unmatched pairs. 13861 records in RAM.
+INFO	2024-07-03 09:23:29	MarkDuplicates	Read    14,000,000 records.  Elapsed time: 00:00:48s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:96,328,342
+INFO	2024-07-03 09:23:29	MarkDuplicates	Tracking 294232 as yet unmatched pairs. 13692 records in RAM.
+INFO	2024-07-03 09:23:32	MarkDuplicates	Read    15,000,000 records.  Elapsed time: 00:00:51s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:103,192,019
+INFO	2024-07-03 09:23:32	MarkDuplicates	Tracking 314006 as yet unmatched pairs. 13524 records in RAM.
+INFO	2024-07-03 09:23:35	MarkDuplicates	Read    16,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:110,125,164
+INFO	2024-07-03 09:23:35	MarkDuplicates	Tracking 331769 as yet unmatched pairs. 13070 records in RAM.
+INFO	2024-07-03 09:23:38	MarkDuplicates	Read    17,000,000 records.  Elapsed time: 00:00:57s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:117,115,238
+INFO	2024-07-03 09:23:38	MarkDuplicates	Tracking 348057 as yet unmatched pairs. 12591 records in RAM.
+INFO	2024-07-03 09:23:41	MarkDuplicates	Read    18,000,000 records.  Elapsed time: 00:01:00s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:124,112,259
+INFO	2024-07-03 09:23:41	MarkDuplicates	Tracking 364397 as yet unmatched pairs. 11956 records in RAM.
+INFO	2024-07-03 09:23:44	MarkDuplicates	Read    19,000,000 records.  Elapsed time: 00:01:04s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:131,060,733
+INFO	2024-07-03 09:23:44	MarkDuplicates	Tracking 381745 as yet unmatched pairs. 11225 records in RAM.
+INFO	2024-07-03 09:23:47	MarkDuplicates	Read    20,000,000 records.  Elapsed time: 00:01:07s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:137,927,191
+INFO	2024-07-03 09:23:47	MarkDuplicates	Tracking 399504 as yet unmatched pairs. 10283 records in RAM.
+INFO	2024-07-03 09:23:52	MarkDuplicates	Read    21,000,000 records.  Elapsed time: 00:01:11s.  Time for last 1,000,000:    4s.  Last read position: NC_045541.1_RagTag:144,973,990
+INFO	2024-07-03 09:23:52	MarkDuplicates	Tracking 417090 as yet unmatched pairs. 9292 records in RAM.
+INFO	2024-07-03 09:23:56	MarkDuplicates	Read    22,000,000 records.  Elapsed time: 00:01:15s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:151,926,538
+INFO	2024-07-03 09:23:56	MarkDuplicates	Tracking 436106 as yet unmatched pairs. 7956 records in RAM.
+INFO	2024-07-03 09:23:59	MarkDuplicates	Read    23,000,000 records.  Elapsed time: 00:01:18s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:159,043,695
+INFO	2024-07-03 09:23:59	MarkDuplicates	Tracking 461612 as yet unmatched pairs. 6184 records in RAM.
+INFO	2024-07-03 09:24:02	MarkDuplicates	Read    24,000,000 records.  Elapsed time: 00:01:21s.  Time for last 1,000,000:    3s.  Last read position: NC_045541.1_RagTag:166,583,044
+INFO	2024-07-03 09:24:02	MarkDuplicates	Tracking 488797 as yet unmatched pairs. 3665 records in RAM.
+INFO	2024-07-03 09:24:16	MarkDuplicates	Read    25,000,000 records.  Elapsed time: 00:01:36s.  Time for last 1,000,000:   14s.  Last read position: NC_045541.1_RagTag:174,577,733
+INFO	2024-07-03 09:24:16	MarkDuplicates	Tracking 526529 as yet unmatched pairs. 924 records in RAM.
+INFO	2024-07-03 09:24:20	MarkDuplicates	Read    26,000,000 records.  Elapsed time: 00:01:40s.  Time for last 1,000,000:    4s.  Last read position: NC_045542.1_RagTag:4,679,772
+INFO	2024-07-03 09:24:20	MarkDuplicates	Tracking 551279 as yet unmatched pairs. 50134 records in RAM.
+INFO	2024-07-03 09:24:24	MarkDuplicates	Read    27,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:11,409,249
+INFO	2024-07-03 09:24:24	MarkDuplicates	Tracking 565504 as yet unmatched pairs. 49542 records in RAM.
+INFO	2024-07-03 09:24:27	MarkDuplicates	Read    28,000,000 records.  Elapsed time: 00:01:46s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:18,522,990
+INFO	2024-07-03 09:24:27	MarkDuplicates	Tracking 581606 as yet unmatched pairs. 49179 records in RAM.
+INFO	2024-07-03 09:24:30	MarkDuplicates	Read    29,000,000 records.  Elapsed time: 00:01:49s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:25,532,194
+INFO	2024-07-03 09:24:30	MarkDuplicates	Tracking 599522 as yet unmatched pairs. 48638 records in RAM.
+INFO	2024-07-03 09:24:33	MarkDuplicates	Read    30,000,000 records.  Elapsed time: 00:01:52s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:32,547,838
+INFO	2024-07-03 09:24:33	MarkDuplicates	Tracking 617574 as yet unmatched pairs. 47686 records in RAM.
+INFO	2024-07-03 09:24:36	MarkDuplicates	Read    31,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:39,901,796
+INFO	2024-07-03 09:24:36	MarkDuplicates	Tracking 636067 as yet unmatched pairs. 46320 records in RAM.
+INFO	2024-07-03 09:24:39	MarkDuplicates	Read    32,000,000 records.  Elapsed time: 00:01:59s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:46,844,526
+INFO	2024-07-03 09:24:39	MarkDuplicates	Tracking 650796 as yet unmatched pairs. 45225 records in RAM.
+INFO	2024-07-03 09:24:43	MarkDuplicates	Read    33,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:53,719,768
+INFO	2024-07-03 09:24:43	MarkDuplicates	Tracking 664878 as yet unmatched pairs. 44054 records in RAM.
+INFO	2024-07-03 09:24:46	MarkDuplicates	Read    34,000,000 records.  Elapsed time: 00:02:05s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:60,513,149
+INFO	2024-07-03 09:24:46	MarkDuplicates	Tracking 679167 as yet unmatched pairs. 42789 records in RAM.
+INFO	2024-07-03 09:24:49	MarkDuplicates	Read    35,000,000 records.  Elapsed time: 00:02:08s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:67,684,275
+INFO	2024-07-03 09:24:49	MarkDuplicates	Tracking 693739 as yet unmatched pairs. 41280 records in RAM.
+INFO	2024-07-03 09:24:52	MarkDuplicates	Read    36,000,000 records.  Elapsed time: 00:02:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:74,690,351
+INFO	2024-07-03 09:24:52	MarkDuplicates	Tracking 707352 as yet unmatched pairs. 39718 records in RAM.
+INFO	2024-07-03 09:24:55	MarkDuplicates	Read    37,000,000 records.  Elapsed time: 00:02:14s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:81,599,327
+INFO	2024-07-03 09:24:55	MarkDuplicates	Tracking 721397 as yet unmatched pairs. 37608 records in RAM.
+INFO	2024-07-03 09:25:00	MarkDuplicates	Read    38,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:    5s.  Last read position: NC_045542.1_RagTag:88,576,233
+INFO	2024-07-03 09:25:00	MarkDuplicates	Tracking 735838 as yet unmatched pairs. 35797 records in RAM.
+INFO	2024-07-03 09:25:03	MarkDuplicates	Read    39,000,000 records.  Elapsed time: 00:02:22s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:95,662,847
+INFO	2024-07-03 09:25:03	MarkDuplicates	Tracking 749992 as yet unmatched pairs. 33824 records in RAM.
+INFO	2024-07-03 09:25:06	MarkDuplicates	Read    40,000,000 records.  Elapsed time: 00:02:26s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:102,453,342
+INFO	2024-07-03 09:25:06	MarkDuplicates	Tracking 762984 as yet unmatched pairs. 31553 records in RAM.
+INFO	2024-07-03 09:25:09	MarkDuplicates	Read    41,000,000 records.  Elapsed time: 00:02:29s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:109,333,923
+INFO	2024-07-03 09:25:09	MarkDuplicates	Tracking 776686 as yet unmatched pairs. 29280 records in RAM.
+INFO	2024-07-03 09:25:13	MarkDuplicates	Read    42,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:116,267,088
+INFO	2024-07-03 09:25:13	MarkDuplicates	Tracking 790797 as yet unmatched pairs. 26765 records in RAM.
+INFO	2024-07-03 09:25:16	MarkDuplicates	Read    43,000,000 records.  Elapsed time: 00:02:35s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:123,225,078
+INFO	2024-07-03 09:25:16	MarkDuplicates	Tracking 808796 as yet unmatched pairs. 23616 records in RAM.
+INFO	2024-07-03 09:25:19	MarkDuplicates	Read    44,000,000 records.  Elapsed time: 00:02:38s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:129,951,299
+INFO	2024-07-03 09:25:19	MarkDuplicates	Tracking 826146 as yet unmatched pairs. 20400 records in RAM.
+INFO	2024-07-03 09:25:22	MarkDuplicates	Read    45,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:136,896,247
+INFO	2024-07-03 09:25:22	MarkDuplicates	Tracking 846469 as yet unmatched pairs. 16118 records in RAM.
+INFO	2024-07-03 09:25:25	MarkDuplicates	Read    46,000,000 records.  Elapsed time: 00:02:45s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:143,774,090
+INFO	2024-07-03 09:25:25	MarkDuplicates	Tracking 869862 as yet unmatched pairs. 11803 records in RAM.
+INFO	2024-07-03 09:25:29	MarkDuplicates	Read    47,000,000 records.  Elapsed time: 00:02:48s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:150,430,413
+INFO	2024-07-03 09:25:29	MarkDuplicates	Tracking 895537 as yet unmatched pairs. 7062 records in RAM.
+INFO	2024-07-03 09:25:32	MarkDuplicates	Read    48,000,000 records.  Elapsed time: 00:02:51s.  Time for last 1,000,000:    3s.  Last read position: NC_045542.1_RagTag:157,489,108
+INFO	2024-07-03 09:25:32	MarkDuplicates	Tracking 923789 as yet unmatched pairs. 1651 records in RAM.
+INFO	2024-07-03 09:25:47	MarkDuplicates	Read    49,000,000 records.  Elapsed time: 00:03:06s.  Time for last 1,000,000:   15s.  Last read position: NC_045543.1_RagTag:5,034,397
+INFO	2024-07-03 09:25:47	MarkDuplicates	Tracking 945929 as yet unmatched pairs. 65747 records in RAM.
+INFO	2024-07-03 09:26:01	MarkDuplicates	Read    50,000,000 records.  Elapsed time: 00:03:21s.  Time for last 1,000,000:   14s.  Last read position: NC_045543.1_RagTag:11,849,373
+INFO	2024-07-03 09:26:01	MarkDuplicates	Tracking 958037 as yet unmatched pairs. 63245 records in RAM.
+INFO	2024-07-03 09:26:05	MarkDuplicates	Read    51,000,000 records.  Elapsed time: 00:03:24s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:18,853,059
+INFO	2024-07-03 09:26:05	MarkDuplicates	Tracking 971670 as yet unmatched pairs. 60383 records in RAM.
+INFO	2024-07-03 09:26:08	MarkDuplicates	Read    52,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:26,009,350
+INFO	2024-07-03 09:26:08	MarkDuplicates	Tracking 987432 as yet unmatched pairs. 57052 records in RAM.
+INFO	2024-07-03 09:26:11	MarkDuplicates	Read    53,000,000 records.  Elapsed time: 00:03:30s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:32,893,648
+INFO	2024-07-03 09:26:11	MarkDuplicates	Tracking 1001024 as yet unmatched pairs. 53602 records in RAM.
+INFO	2024-07-03 09:26:14	MarkDuplicates	Read    54,000,000 records.  Elapsed time: 00:03:33s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:40,034,260
+INFO	2024-07-03 09:26:14	MarkDuplicates	Tracking 1013494 as yet unmatched pairs. 50282 records in RAM.
+INFO	2024-07-03 09:26:17	MarkDuplicates	Read    55,000,000 records.  Elapsed time: 00:03:36s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:47,044,079
+INFO	2024-07-03 09:26:17	MarkDuplicates	Tracking 1026026 as yet unmatched pairs. 46989 records in RAM.
+INFO	2024-07-03 09:26:21	MarkDuplicates	Read    56,000,000 records.  Elapsed time: 00:03:41s.  Time for last 1,000,000:    4s.  Last read position: NC_045543.1_RagTag:54,058,752
+INFO	2024-07-03 09:26:21	MarkDuplicates	Tracking 1037088 as yet unmatched pairs. 43853 records in RAM.
+INFO	2024-07-03 09:26:24	MarkDuplicates	Read    57,000,000 records.  Elapsed time: 00:03:44s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:61,022,858
+INFO	2024-07-03 09:26:24	MarkDuplicates	Tracking 1049035 as yet unmatched pairs. 40242 records in RAM.
+INFO	2024-07-03 09:26:27	MarkDuplicates	Read    58,000,000 records.  Elapsed time: 00:03:47s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:68,046,986
+INFO	2024-07-03 09:26:27	MarkDuplicates	Tracking 1060094 as yet unmatched pairs. 36751 records in RAM.
+INFO	2024-07-03 09:26:31	MarkDuplicates	Read    59,000,000 records.  Elapsed time: 00:03:50s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:74,990,857
+INFO	2024-07-03 09:26:31	MarkDuplicates	Tracking 1070394 as yet unmatched pairs. 33324 records in RAM.
+INFO	2024-07-03 09:26:34	MarkDuplicates	Read    60,000,000 records.  Elapsed time: 00:03:53s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:82,256,853
+INFO	2024-07-03 09:26:34	MarkDuplicates	Tracking 1082823 as yet unmatched pairs. 28748 records in RAM.
+INFO	2024-07-03 09:26:37	MarkDuplicates	Read    61,000,000 records.  Elapsed time: 00:03:56s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:89,223,109
+INFO	2024-07-03 09:26:37	MarkDuplicates	Tracking 1097143 as yet unmatched pairs. 23172 records in RAM.
+INFO	2024-07-03 09:26:40	MarkDuplicates	Read    62,000,000 records.  Elapsed time: 00:03:59s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:96,293,663
+INFO	2024-07-03 09:26:40	MarkDuplicates	Tracking 1117693 as yet unmatched pairs. 16252 records in RAM.
+INFO	2024-07-03 09:26:43	MarkDuplicates	Read    63,000,000 records.  Elapsed time: 00:04:03s.  Time for last 1,000,000:    3s.  Last read position: NC_045543.1_RagTag:103,492,680
+INFO	2024-07-03 09:26:43	MarkDuplicates	Tracking 1151412 as yet unmatched pairs. 5980 records in RAM.
+INFO	2024-07-03 09:26:48	MarkDuplicates	Read    64,000,000 records.  Elapsed time: 00:04:08s.  Time for last 1,000,000:    4s.  Last read position: NC_045544.1_RagTag:2,284,253
+INFO	2024-07-03 09:26:48	MarkDuplicates	Tracking 1174061 as yet unmatched pairs. 124957 records in RAM.
+INFO	2024-07-03 09:26:51	MarkDuplicates	Read    65,000,000 records.  Elapsed time: 00:04:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:9,326,486
+INFO	2024-07-03 09:26:51	MarkDuplicates	Tracking 1185227 as yet unmatched pairs. 121494 records in RAM.
+INFO	2024-07-03 09:26:55	MarkDuplicates	Read    66,000,000 records.  Elapsed time: 00:04:14s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:16,246,088
+INFO	2024-07-03 09:26:55	MarkDuplicates	Tracking 1196404 as yet unmatched pairs. 117925 records in RAM.
+INFO	2024-07-03 09:26:58	MarkDuplicates	Read    67,000,000 records.  Elapsed time: 00:04:17s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:23,294,740
+INFO	2024-07-03 09:26:58	MarkDuplicates	Tracking 1209194 as yet unmatched pairs. 113329 records in RAM.
+INFO	2024-07-03 09:27:01	MarkDuplicates	Read    68,000,000 records.  Elapsed time: 00:04:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:30,287,632
+INFO	2024-07-03 09:27:01	MarkDuplicates	Tracking 1220053 as yet unmatched pairs. 109094 records in RAM.
+INFO	2024-07-03 09:27:04	MarkDuplicates	Read    69,000,000 records.  Elapsed time: 00:04:23s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:36,950,705
+INFO	2024-07-03 09:27:04	MarkDuplicates	Tracking 1231145 as yet unmatched pairs. 104654 records in RAM.
+INFO	2024-07-03 09:27:07	MarkDuplicates	Read    70,000,000 records.  Elapsed time: 00:04:27s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:43,983,402
+INFO	2024-07-03 09:27:07	MarkDuplicates	Tracking 1242042 as yet unmatched pairs. 100088 records in RAM.
+INFO	2024-07-03 09:27:10	MarkDuplicates	Read    71,000,000 records.  Elapsed time: 00:04:30s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:51,030,650
+INFO	2024-07-03 09:27:10	MarkDuplicates	Tracking 1252758 as yet unmatched pairs. 95444 records in RAM.
+INFO	2024-07-03 09:27:13	MarkDuplicates	Read    72,000,000 records.  Elapsed time: 00:04:33s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:58,099,935
+INFO	2024-07-03 09:27:13	MarkDuplicates	Tracking 1261569 as yet unmatched pairs. 90958 records in RAM.
+INFO	2024-07-03 09:27:16	MarkDuplicates	Read    73,000,000 records.  Elapsed time: 00:04:36s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:65,192,402
+INFO	2024-07-03 09:27:16	MarkDuplicates	Tracking 1272117 as yet unmatched pairs. 86091 records in RAM.
+INFO	2024-07-03 09:27:29	MarkDuplicates	Read    74,000,000 records.  Elapsed time: 00:04:49s.  Time for last 1,000,000:   13s.  Last read position: NC_045544.1_RagTag:72,037,183
+INFO	2024-07-03 09:27:29	MarkDuplicates	Tracking 1281346 as yet unmatched pairs. 81174 records in RAM.
+INFO	2024-07-03 09:27:33	MarkDuplicates	Read    75,000,000 records.  Elapsed time: 00:04:52s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:78,856,540
+INFO	2024-07-03 09:27:33	MarkDuplicates	Tracking 1289939 as yet unmatched pairs. 76176 records in RAM.
+INFO	2024-07-03 09:27:36	MarkDuplicates	Read    76,000,000 records.  Elapsed time: 00:04:55s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:85,787,723
+INFO	2024-07-03 09:27:36	MarkDuplicates	Tracking 1299156 as yet unmatched pairs. 70949 records in RAM.
+INFO	2024-07-03 09:27:39	MarkDuplicates	Read    77,000,000 records.  Elapsed time: 00:04:58s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:92,784,550
+INFO	2024-07-03 09:27:39	MarkDuplicates	Tracking 1307344 as yet unmatched pairs. 66168 records in RAM.
+INFO	2024-07-03 09:27:42	MarkDuplicates	Read    78,000,000 records.  Elapsed time: 00:05:01s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:99,541,916
+INFO	2024-07-03 09:27:42	MarkDuplicates	Tracking 1315771 as yet unmatched pairs. 61031 records in RAM.
+INFO	2024-07-03 09:27:45	MarkDuplicates	Read    79,000,000 records.  Elapsed time: 00:05:04s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:106,469,367
+INFO	2024-07-03 09:27:45	MarkDuplicates	Tracking 1323229 as yet unmatched pairs. 55840 records in RAM.
+INFO	2024-07-03 09:27:48	MarkDuplicates	Read    80,000,000 records.  Elapsed time: 00:05:07s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:113,308,187
+INFO	2024-07-03 09:27:48	MarkDuplicates	Tracking 1331126 as yet unmatched pairs. 51065 records in RAM.
+INFO	2024-07-03 09:27:51	MarkDuplicates	Read    81,000,000 records.  Elapsed time: 00:05:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:120,240,359
+INFO	2024-07-03 09:27:51	MarkDuplicates	Tracking 1337888 as yet unmatched pairs. 45710 records in RAM.
+INFO	2024-07-03 09:27:54	MarkDuplicates	Read    82,000,000 records.  Elapsed time: 00:05:14s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:127,224,048
+INFO	2024-07-03 09:27:54	MarkDuplicates	Tracking 1345894 as yet unmatched pairs. 39773 records in RAM.
+INFO	2024-07-03 09:27:57	MarkDuplicates	Read    83,000,000 records.  Elapsed time: 00:05:17s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:134,497,282
+INFO	2024-07-03 09:27:58	MarkDuplicates	Tracking 1357079 as yet unmatched pairs. 32232 records in RAM.
+INFO	2024-07-03 09:28:01	MarkDuplicates	Read    84,000,000 records.  Elapsed time: 00:05:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:141,532,637
+INFO	2024-07-03 09:28:01	MarkDuplicates	Tracking 1366525 as yet unmatched pairs. 24989 records in RAM.
+INFO	2024-07-03 09:28:04	MarkDuplicates	Read    85,000,000 records.  Elapsed time: 00:05:23s.  Time for last 1,000,000:    3s.  Last read position: NC_045544.1_RagTag:148,612,244
+INFO	2024-07-03 09:28:04	MarkDuplicates	Tracking 1381230 as yet unmatched pairs. 15015 records in RAM.
+INFO	2024-07-03 09:28:09	MarkDuplicates	Read    86,000,000 records.  Elapsed time: 00:05:28s.  Time for last 1,000,000:    5s.  Last read position: NC_045544.1_RagTag:157,045,157
+INFO	2024-07-03 09:28:09	MarkDuplicates	Tracking 1399679 as yet unmatched pairs. 3398 records in RAM.
+INFO	2024-07-03 09:28:13	MarkDuplicates	Read    87,000,000 records.  Elapsed time: 00:05:33s.  Time for last 1,000,000:    4s.  Last read position: NC_045545.1_RagTag:4,621,280
+INFO	2024-07-03 09:28:13	MarkDuplicates	Tracking 1412870 as yet unmatched pairs. 94218 records in RAM.
+INFO	2024-07-03 09:28:17	MarkDuplicates	Read    88,000,000 records.  Elapsed time: 00:05:36s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:11,591,019
+INFO	2024-07-03 09:28:17	MarkDuplicates	Tracking 1419995 as yet unmatched pairs. 88052 records in RAM.
+INFO	2024-07-03 09:28:20	MarkDuplicates	Read    89,000,000 records.  Elapsed time: 00:05:39s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:18,598,465
+INFO	2024-07-03 09:28:20	MarkDuplicates	Tracking 1426520 as yet unmatched pairs. 82012 records in RAM.
+INFO	2024-07-03 09:28:23	MarkDuplicates	Read    90,000,000 records.  Elapsed time: 00:05:42s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:25,663,283
+INFO	2024-07-03 09:28:23	MarkDuplicates	Tracking 1432537 as yet unmatched pairs. 76046 records in RAM.
+INFO	2024-07-03 09:28:26	MarkDuplicates	Read    91,000,000 records.  Elapsed time: 00:05:45s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:32,560,300
+INFO	2024-07-03 09:28:26	MarkDuplicates	Tracking 1438224 as yet unmatched pairs. 70422 records in RAM.
+INFO	2024-07-03 09:28:29	MarkDuplicates	Read    92,000,000 records.  Elapsed time: 00:05:48s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:39,629,808
+INFO	2024-07-03 09:28:29	MarkDuplicates	Tracking 1443758 as yet unmatched pairs. 64394 records in RAM.
+INFO	2024-07-03 09:28:32	MarkDuplicates	Read    93,000,000 records.  Elapsed time: 00:05:51s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:46,429,489
+INFO	2024-07-03 09:28:32	MarkDuplicates	Tracking 1449283 as yet unmatched pairs. 58402 records in RAM.
+INFO	2024-07-03 09:28:35	MarkDuplicates	Read    94,000,000 records.  Elapsed time: 00:05:54s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:53,372,737
+INFO	2024-07-03 09:28:35	MarkDuplicates	Tracking 1454856 as yet unmatched pairs. 52633 records in RAM.
+INFO	2024-07-03 09:28:38	MarkDuplicates	Read    95,000,000 records.  Elapsed time: 00:05:58s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:60,324,314
+INFO	2024-07-03 09:28:38	MarkDuplicates	Tracking 1459604 as yet unmatched pairs. 46817 records in RAM.
+INFO	2024-07-03 09:28:41	MarkDuplicates	Read    96,000,000 records.  Elapsed time: 00:06:01s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:67,323,943
+INFO	2024-07-03 09:28:41	MarkDuplicates	Tracking 1465436 as yet unmatched pairs. 39784 records in RAM.
+INFO	2024-07-03 09:28:45	MarkDuplicates	Read    97,000,000 records.  Elapsed time: 00:06:04s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:74,224,598
+INFO	2024-07-03 09:28:45	MarkDuplicates	Tracking 1472310 as yet unmatched pairs. 32012 records in RAM.
+INFO	2024-07-03 09:28:58	MarkDuplicates	Read    98,000,000 records.  Elapsed time: 00:06:17s.  Time for last 1,000,000:   12s.  Last read position: NC_045545.1_RagTag:81,014,727
+INFO	2024-07-03 09:28:58	MarkDuplicates	Tracking 1482315 as yet unmatched pairs. 20589 records in RAM.
+INFO	2024-07-03 09:29:01	MarkDuplicates	Read    99,000,000 records.  Elapsed time: 00:06:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045545.1_RagTag:89,042,037
+INFO	2024-07-03 09:29:01	MarkDuplicates	Tracking 1498225 as yet unmatched pairs. 5490 records in RAM.
+INFO	2024-07-03 09:29:18	MarkDuplicates	Read   100,000,000 records.  Elapsed time: 00:06:37s.  Time for last 1,000,000:   16s.  Last read position: NC_045546.1_RagTag:5,079,008
+INFO	2024-07-03 09:29:18	MarkDuplicates	Tracking 1516520 as yet unmatched pairs. 127834 records in RAM.
+INFO	2024-07-03 09:29:21	MarkDuplicates	Read   101,000,000 records.  Elapsed time: 00:06:40s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:12,929,494
+INFO	2024-07-03 09:29:21	MarkDuplicates	Tracking 1531438 as yet unmatched pairs. 114489 records in RAM.
+INFO	2024-07-03 09:29:24	MarkDuplicates	Read   102,000,000 records.  Elapsed time: 00:06:44s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:20,193,983
+INFO	2024-07-03 09:29:24	MarkDuplicates	Tracking 1538781 as yet unmatched pairs. 103854 records in RAM.
+INFO	2024-07-03 09:29:27	MarkDuplicates	Read   103,000,000 records.  Elapsed time: 00:06:47s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:27,206,445
+INFO	2024-07-03 09:29:27	MarkDuplicates	Tracking 1542643 as yet unmatched pairs. 96750 records in RAM.
+INFO	2024-07-03 09:29:31	MarkDuplicates	Read   104,000,000 records.  Elapsed time: 00:06:50s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:34,123,548
+INFO	2024-07-03 09:29:31	MarkDuplicates	Tracking 1546393 as yet unmatched pairs. 89199 records in RAM.
+INFO	2024-07-03 09:29:35	MarkDuplicates	Read   105,000,000 records.  Elapsed time: 00:06:54s.  Time for last 1,000,000:    4s.  Last read position: NC_045546.1_RagTag:41,173,614
+INFO	2024-07-03 09:29:35	MarkDuplicates	Tracking 1550486 as yet unmatched pairs. 82583 records in RAM.
+INFO	2024-07-03 09:29:38	MarkDuplicates	Read   106,000,000 records.  Elapsed time: 00:06:57s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:48,345,337
+INFO	2024-07-03 09:29:38	MarkDuplicates	Tracking 1555818 as yet unmatched pairs. 74985 records in RAM.
+INFO	2024-07-03 09:29:41	MarkDuplicates	Read   107,000,000 records.  Elapsed time: 00:07:00s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:55,147,453
+INFO	2024-07-03 09:29:41	MarkDuplicates	Tracking 1559999 as yet unmatched pairs. 68140 records in RAM.
+INFO	2024-07-03 09:29:44	MarkDuplicates	Read   108,000,000 records.  Elapsed time: 00:07:03s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:62,303,430
+INFO	2024-07-03 09:29:44	MarkDuplicates	Tracking 1567923 as yet unmatched pairs. 59525 records in RAM.
+INFO	2024-07-03 09:29:47	MarkDuplicates	Read   109,000,000 records.  Elapsed time: 00:07:07s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:70,050,784
+INFO	2024-07-03 09:29:47	MarkDuplicates	Tracking 1582309 as yet unmatched pairs. 48283 records in RAM.
+INFO	2024-07-03 09:29:51	MarkDuplicates	Read   110,000,000 records.  Elapsed time: 00:07:10s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:76,895,897
+INFO	2024-07-03 09:29:51	MarkDuplicates	Tracking 1592953 as yet unmatched pairs. 37166 records in RAM.
+INFO	2024-07-03 09:29:54	MarkDuplicates	Read   111,000,000 records.  Elapsed time: 00:07:13s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:83,710,886
+INFO	2024-07-03 09:29:54	MarkDuplicates	Tracking 1598543 as yet unmatched pairs. 27177 records in RAM.
+INFO	2024-07-03 09:29:57	MarkDuplicates	Read   112,000,000 records.  Elapsed time: 00:07:16s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:90,512,506
+INFO	2024-07-03 09:29:57	MarkDuplicates	Tracking 1602017 as yet unmatched pairs. 18390 records in RAM.
+INFO	2024-07-03 09:30:00	MarkDuplicates	Read   113,000,000 records.  Elapsed time: 00:07:19s.  Time for last 1,000,000:    3s.  Last read position: NC_045546.1_RagTag:97,432,201
+INFO	2024-07-03 09:30:00	MarkDuplicates	Tracking 1605133 as yet unmatched pairs. 9175 records in RAM.
+INFO	2024-07-03 09:30:05	MarkDuplicates	Read   114,000,000 records.  Elapsed time: 00:07:24s.  Time for last 1,000,000:    5s.  Last read position: NC_045547.1_RagTag:1,074,305
+INFO	2024-07-03 09:30:05	MarkDuplicates	Tracking 1609405 as yet unmatched pairs. 154152 records in RAM.
+INFO	2024-07-03 09:30:08	MarkDuplicates	Read   115,000,000 records.  Elapsed time: 00:07:28s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:9,678,933
+INFO	2024-07-03 09:30:08	MarkDuplicates	Tracking 1621379 as yet unmatched pairs. 139213 records in RAM.
+INFO	2024-07-03 09:30:12	MarkDuplicates	Read   116,000,000 records.  Elapsed time: 00:07:31s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:16,909,514
+INFO	2024-07-03 09:30:12	MarkDuplicates	Tracking 1626245 as yet unmatched pairs. 126937 records in RAM.
+INFO	2024-07-03 09:30:15	MarkDuplicates	Read   117,000,000 records.  Elapsed time: 00:07:34s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:23,982,952
+INFO	2024-07-03 09:30:15	MarkDuplicates	Tracking 1629051 as yet unmatched pairs. 116602 records in RAM.
+INFO	2024-07-03 09:30:18	MarkDuplicates	Read   118,000,000 records.  Elapsed time: 00:07:37s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:30,821,082
+INFO	2024-07-03 09:30:18	MarkDuplicates	Tracking 1630796 as yet unmatched pairs. 107976 records in RAM.
+INFO	2024-07-03 09:30:21	MarkDuplicates	Read   119,000,000 records.  Elapsed time: 00:07:40s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:37,554,604
+INFO	2024-07-03 09:30:21	MarkDuplicates	Tracking 1632869 as yet unmatched pairs. 100411 records in RAM.
+INFO	2024-07-03 09:30:24	MarkDuplicates	Read   120,000,000 records.  Elapsed time: 00:07:44s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:44,668,478
+INFO	2024-07-03 09:30:24	MarkDuplicates	Tracking 1635252 as yet unmatched pairs. 91741 records in RAM.
+INFO	2024-07-03 09:30:27	MarkDuplicates	Read   121,000,000 records.  Elapsed time: 00:07:47s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:51,758,633
+INFO	2024-07-03 09:30:27	MarkDuplicates	Tracking 1638757 as yet unmatched pairs. 81091 records in RAM.
+INFO	2024-07-03 09:30:31	MarkDuplicates	Read   122,000,000 records.  Elapsed time: 00:07:50s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:59,163,045
+INFO	2024-07-03 09:30:31	MarkDuplicates	Tracking 1644550 as yet unmatched pairs. 66777 records in RAM.
+INFO	2024-07-03 09:30:44	MarkDuplicates	Read   123,000,000 records.  Elapsed time: 00:08:03s.  Time for last 1,000,000:   13s.  Last read position: NC_045547.1_RagTag:65,620,792
+INFO	2024-07-03 09:30:44	MarkDuplicates	Tracking 1649809 as yet unmatched pairs. 52628 records in RAM.
+INFO	2024-07-03 09:30:47	MarkDuplicates	Read   124,000,000 records.  Elapsed time: 00:08:06s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:72,533,771
+INFO	2024-07-03 09:30:47	MarkDuplicates	Tracking 1650957 as yet unmatched pairs. 42360 records in RAM.
+INFO	2024-07-03 09:30:50	MarkDuplicates	Read   125,000,000 records.  Elapsed time: 00:08:09s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:79,742,138
+INFO	2024-07-03 09:30:50	MarkDuplicates	Tracking 1654069 as yet unmatched pairs. 27932 records in RAM.
+INFO	2024-07-03 09:30:53	MarkDuplicates	Read   126,000,000 records.  Elapsed time: 00:08:13s.  Time for last 1,000,000:    3s.  Last read position: NC_045547.1_RagTag:87,198,975
+INFO	2024-07-03 09:30:53	MarkDuplicates	Tracking 1660522 as yet unmatched pairs. 10091 records in RAM.
+INFO	2024-07-03 09:30:58	MarkDuplicates	Read   127,000,000 records.  Elapsed time: 00:08:18s.  Time for last 1,000,000:    4s.  Last read position: NC_045548.1_RagTag:2,550,428
+INFO	2024-07-03 09:30:58	MarkDuplicates	Tracking 1667739 as yet unmatched pairs. 118871 records in RAM.
+INFO	2024-07-03 09:31:01	MarkDuplicates	Read   128,000,000 records.  Elapsed time: 00:08:21s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:9,415,262
+INFO	2024-07-03 09:31:01	MarkDuplicates	Tracking 1667932 as yet unmatched pairs. 109657 records in RAM.
+INFO	2024-07-03 09:31:05	MarkDuplicates	Read   129,000,000 records.  Elapsed time: 00:08:24s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:16,292,846
+INFO	2024-07-03 09:31:05	MarkDuplicates	Tracking 1667767 as yet unmatched pairs. 100153 records in RAM.
+INFO	2024-07-03 09:31:08	MarkDuplicates	Read   130,000,000 records.  Elapsed time: 00:08:27s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:23,387,209
+INFO	2024-07-03 09:31:08	MarkDuplicates	Tracking 1667719 as yet unmatched pairs. 91288 records in RAM.
+INFO	2024-07-03 09:31:11	MarkDuplicates	Read   131,000,000 records.  Elapsed time: 00:08:30s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:30,221,342
+INFO	2024-07-03 09:31:11	MarkDuplicates	Tracking 1667706 as yet unmatched pairs. 83398 records in RAM.
+INFO	2024-07-03 09:31:14	MarkDuplicates	Read   132,000,000 records.  Elapsed time: 00:08:33s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:37,333,535
+INFO	2024-07-03 09:31:14	MarkDuplicates	Tracking 1667436 as yet unmatched pairs. 74097 records in RAM.
+INFO	2024-07-03 09:31:17	MarkDuplicates	Read   133,000,000 records.  Elapsed time: 00:08:36s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:44,401,177
+INFO	2024-07-03 09:31:17	MarkDuplicates	Tracking 1666905 as yet unmatched pairs. 64810 records in RAM.
+INFO	2024-07-03 09:31:20	MarkDuplicates	Read   134,000,000 records.  Elapsed time: 00:08:39s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:51,514,646
+INFO	2024-07-03 09:31:20	MarkDuplicates	Tracking 1666384 as yet unmatched pairs. 54763 records in RAM.
+INFO	2024-07-03 09:31:23	MarkDuplicates	Read   135,000,000 records.  Elapsed time: 00:08:43s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:58,788,124
+INFO	2024-07-03 09:31:23	MarkDuplicates	Tracking 1666956 as yet unmatched pairs. 40194 records in RAM.
+INFO	2024-07-03 09:31:27	MarkDuplicates	Read   136,000,000 records.  Elapsed time: 00:08:46s.  Time for last 1,000,000:    3s.  Last read position: NC_045548.1_RagTag:66,601,437
+INFO	2024-07-03 09:31:27	MarkDuplicates	Tracking 1668695 as yet unmatched pairs. 18382 records in RAM.
+INFO	2024-07-03 09:31:33	MarkDuplicates	Read   137,000,000 records.  Elapsed time: 00:08:53s.  Time for last 1,000,000:    6s.  Last read position: NC_045549.1_RagTag:818,313
+INFO	2024-07-03 09:31:33	MarkDuplicates	Tracking 1673482 as yet unmatched pairs. 270767 records in RAM.
+INFO	2024-07-03 09:31:39	MarkDuplicates	Read   138,000,000 records.  Elapsed time: 00:08:58s.  Time for last 1,000,000:    5s.  Last read position: NC_045549.1_RagTag:8,558,993
+INFO	2024-07-03 09:31:39	MarkDuplicates	Tracking 1679184 as yet unmatched pairs. 253933 records in RAM.
+INFO	2024-07-03 09:31:42	MarkDuplicates	Read   139,000,000 records.  Elapsed time: 00:09:01s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:15,729,509
+INFO	2024-07-03 09:31:42	MarkDuplicates	Tracking 1677510 as yet unmatched pairs. 237820 records in RAM.
+INFO	2024-07-03 09:31:45	MarkDuplicates	Read   140,000,000 records.  Elapsed time: 00:09:05s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:22,910,663
+INFO	2024-07-03 09:31:45	MarkDuplicates	Tracking 1675471 as yet unmatched pairs. 226044 records in RAM.
+INFO	2024-07-03 09:31:48	MarkDuplicates	Read   141,000,000 records.  Elapsed time: 00:09:08s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:29,982,750
+INFO	2024-07-03 09:31:48	MarkDuplicates	Tracking 1673606 as yet unmatched pairs. 216840 records in RAM.
+INFO	2024-07-03 09:31:52	MarkDuplicates	Read   142,000,000 records.  Elapsed time: 00:09:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:37,206,513
+INFO	2024-07-03 09:31:52	MarkDuplicates	Tracking 1672028 as yet unmatched pairs. 207276 records in RAM.
+INFO	2024-07-03 09:31:55	MarkDuplicates	Read   143,000,000 records.  Elapsed time: 00:09:14s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:44,159,155
+INFO	2024-07-03 09:31:55	MarkDuplicates	Tracking 1670636 as yet unmatched pairs. 198263 records in RAM.
+INFO	2024-07-03 09:31:58	MarkDuplicates	Read   144,000,000 records.  Elapsed time: 00:09:17s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:51,511,240
+INFO	2024-07-03 09:31:58	MarkDuplicates	Tracking 1669216 as yet unmatched pairs. 186654 records in RAM.
+INFO	2024-07-03 09:32:01	MarkDuplicates	Read   145,000,000 records.  Elapsed time: 00:09:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:58,814,418
+INFO	2024-07-03 09:32:01	MarkDuplicates	Tracking 1669977 as yet unmatched pairs. 170701 records in RAM.
+INFO	2024-07-03 09:32:04	MarkDuplicates	Read   146,000,000 records.  Elapsed time: 00:09:24s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:66,262,486
+INFO	2024-07-03 09:32:04	MarkDuplicates	Tracking 1668308 as yet unmatched pairs. 156473 records in RAM.
+INFO	2024-07-03 09:32:17	MarkDuplicates	Read   147,000,000 records.  Elapsed time: 00:09:37s.  Time for last 1,000,000:   13s.  Last read position: NC_045549.1_RagTag:73,262,898
+INFO	2024-07-03 09:32:17	MarkDuplicates	Tracking 1665440 as yet unmatched pairs. 144948 records in RAM.
+INFO	2024-07-03 09:32:21	MarkDuplicates	Read   148,000,000 records.  Elapsed time: 00:09:40s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:80,291,652
+INFO	2024-07-03 09:32:21	MarkDuplicates	Tracking 1662739 as yet unmatched pairs. 134502 records in RAM.
+INFO	2024-07-03 09:32:36	MarkDuplicates	Read   149,000,000 records.  Elapsed time: 00:09:55s.  Time for last 1,000,000:   15s.  Last read position: NC_045549.1_RagTag:87,318,459
+INFO	2024-07-03 09:32:36	MarkDuplicates	Tracking 1659399 as yet unmatched pairs. 121290 records in RAM.
+INFO	2024-07-03 09:32:39	MarkDuplicates	Read   150,000,000 records.  Elapsed time: 00:09:58s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:94,572,256
+INFO	2024-07-03 09:32:39	MarkDuplicates	Tracking 1655869 as yet unmatched pairs. 103882 records in RAM.
+INFO	2024-07-03 09:32:42	MarkDuplicates	Read   151,000,000 records.  Elapsed time: 00:10:02s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:102,190,831
+INFO	2024-07-03 09:32:42	MarkDuplicates	Tracking 1652386 as yet unmatched pairs. 82027 records in RAM.
+INFO	2024-07-03 09:32:46	MarkDuplicates	Read   152,000,000 records.  Elapsed time: 00:10:05s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:109,607,169
+INFO	2024-07-03 09:32:46	MarkDuplicates	Tracking 1651443 as yet unmatched pairs. 61216 records in RAM.
+INFO	2024-07-03 09:32:49	MarkDuplicates	Read   153,000,000 records.  Elapsed time: 00:10:08s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:116,891,275
+INFO	2024-07-03 09:32:49	MarkDuplicates	Tracking 1647618 as yet unmatched pairs. 45781 records in RAM.
+INFO	2024-07-03 09:32:52	MarkDuplicates	Read   154,000,000 records.  Elapsed time: 00:10:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045549.1_RagTag:124,618,890
+INFO	2024-07-03 09:32:52	MarkDuplicates	Tracking 1642444 as yet unmatched pairs. 22760 records in RAM.
+INFO	2024-07-03 09:32:57	MarkDuplicates	Read   155,000,000 records.  Elapsed time: 00:10:16s.  Time for last 1,000,000:    5s.  Last read position: NC_045550.1_RagTag:445,354
+INFO	2024-07-03 09:32:57	MarkDuplicates	Tracking 1640288 as yet unmatched pairs. 128478 records in RAM.
+INFO	2024-07-03 09:33:00	MarkDuplicates	Read   156,000,000 records.  Elapsed time: 00:10:19s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:7,512,877
+INFO	2024-07-03 09:33:00	MarkDuplicates	Tracking 1635836 as yet unmatched pairs. 116816 records in RAM.
+INFO	2024-07-03 09:33:03	MarkDuplicates	Read   157,000,000 records.  Elapsed time: 00:10:23s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:14,457,841
+INFO	2024-07-03 09:33:03	MarkDuplicates	Tracking 1632033 as yet unmatched pairs. 106978 records in RAM.
+INFO	2024-07-03 09:33:08	MarkDuplicates	Read   158,000,000 records.  Elapsed time: 00:10:27s.  Time for last 1,000,000:    4s.  Last read position: NC_045550.1_RagTag:21,595,802
+INFO	2024-07-03 09:33:08	MarkDuplicates	Tracking 1628556 as yet unmatched pairs. 97654 records in RAM.
+INFO	2024-07-03 09:33:11	MarkDuplicates	Read   159,000,000 records.  Elapsed time: 00:10:30s.  Time for last 1,000,000:    2s.  Last read position: NC_045550.1_RagTag:28,622,496
+INFO	2024-07-03 09:33:11	MarkDuplicates	Tracking 1625045 as yet unmatched pairs. 89231 records in RAM.
+INFO	2024-07-03 09:33:14	MarkDuplicates	Read   160,000,000 records.  Elapsed time: 00:10:33s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:35,624,991
+INFO	2024-07-03 09:33:14	MarkDuplicates	Tracking 1621112 as yet unmatched pairs. 79404 records in RAM.
+INFO	2024-07-03 09:33:17	MarkDuplicates	Read   161,000,000 records.  Elapsed time: 00:10:36s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:42,475,834
+INFO	2024-07-03 09:33:17	MarkDuplicates	Tracking 1616640 as yet unmatched pairs. 68502 records in RAM.
+INFO	2024-07-03 09:33:20	MarkDuplicates	Read   162,000,000 records.  Elapsed time: 00:10:39s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:49,368,500
+INFO	2024-07-03 09:33:20	MarkDuplicates	Tracking 1611723 as yet unmatched pairs. 55863 records in RAM.
+INFO	2024-07-03 09:33:23	MarkDuplicates	Read   163,000,000 records.  Elapsed time: 00:10:43s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:56,521,777
+INFO	2024-07-03 09:33:23	MarkDuplicates	Tracking 1604995 as yet unmatched pairs. 39451 records in RAM.
+INFO	2024-07-03 09:33:26	MarkDuplicates	Read   164,000,000 records.  Elapsed time: 00:10:46s.  Time for last 1,000,000:    3s.  Last read position: NC_045550.1_RagTag:64,240,229
+INFO	2024-07-03 09:33:26	MarkDuplicates	Tracking 1596743 as yet unmatched pairs. 14427 records in RAM.
+INFO	2024-07-03 09:33:30	MarkDuplicates	Read   165,000,000 records.  Elapsed time: 00:10:50s.  Time for last 1,000,000:    4s.  Last read position: NC_045551.1_RagTag:3,003,013
+INFO	2024-07-03 09:33:30	MarkDuplicates	Tracking 1590565 as yet unmatched pairs. 57625 records in RAM.
+INFO	2024-07-03 09:33:34	MarkDuplicates	Read   166,000,000 records.  Elapsed time: 00:10:53s.  Time for last 1,000,000:    3s.  Last read position: NC_045551.1_RagTag:9,767,577
+INFO	2024-07-03 09:33:34	MarkDuplicates	Tracking 1585618 as yet unmatched pairs. 44802 records in RAM.
+INFO	2024-07-03 09:33:37	MarkDuplicates	Read   167,000,000 records.  Elapsed time: 00:10:56s.  Time for last 1,000,000:    3s.  Last read position: NC_045551.1_RagTag:16,770,480
+INFO	2024-07-03 09:33:37	MarkDuplicates	Tracking 1579767 as yet unmatched pairs. 29345 records in RAM.
+INFO	2024-07-03 09:33:40	MarkDuplicates	Read   168,000,000 records.  Elapsed time: 00:10:59s.  Time for last 1,000,000:    3s.  Last read position: NC_045551.1_RagTag:24,166,688
+INFO	2024-07-03 09:33:40	MarkDuplicates	Tracking 1574075 as yet unmatched pairs. 7560 records in RAM.
+INFO	2024-07-03 09:33:45	MarkDuplicates	Read   169,000,000 records.  Elapsed time: 00:11:05s.  Time for last 1,000,000:    5s.  Last read position: NC_045552.1_RagTag:6,028,528
+INFO	2024-07-03 09:33:45	MarkDuplicates	Tracking 1568928 as yet unmatched pairs. 149883 records in RAM.
+INFO	2024-07-03 09:33:49	MarkDuplicates	Read   170,000,000 records.  Elapsed time: 00:11:08s.  Time for last 1,000,000:    3s.  Last read position: NC_045552.1_RagTag:13,256,023
+INFO	2024-07-03 09:33:49	MarkDuplicates	Tracking 1560401 as yet unmatched pairs. 129419 records in RAM.
+INFO	2024-07-03 09:33:52	MarkDuplicates	Read   171,000,000 records.  Elapsed time: 00:11:11s.  Time for last 1,000,000:    3s.  Last read position: NC_045552.1_RagTag:20,849,571
+INFO	2024-07-03 09:33:52	MarkDuplicates	Tracking 1551196 as yet unmatched pairs. 109278 records in RAM.
+INFO	2024-07-03 09:34:05	MarkDuplicates	Read   172,000,000 records.  Elapsed time: 00:11:24s.  Time for last 1,000,000:   13s.  Last read position: NC_045552.1_RagTag:28,163,831
+INFO	2024-07-03 09:34:05	MarkDuplicates	Tracking 1543310 as yet unmatched pairs. 88896 records in RAM.
+INFO	2024-07-03 09:34:08	MarkDuplicates	Read   173,000,000 records.  Elapsed time: 00:11:27s.  Time for last 1,000,000:    3s.  Last read position: NC_045552.1_RagTag:36,178,911
+INFO	2024-07-03 09:34:08	MarkDuplicates	Tracking 1534014 as yet unmatched pairs. 67951 records in RAM.
+INFO	2024-07-03 09:34:11	MarkDuplicates	Read   174,000,000 records.  Elapsed time: 00:11:31s.  Time for last 1,000,000:    3s.  Last read position: NC_045552.1_RagTag:42,814,930
+INFO	2024-07-03 09:34:11	MarkDuplicates	Tracking 1527241 as yet unmatched pairs. 47618 records in RAM.
+INFO	2024-07-03 09:34:14	MarkDuplicates	Read   175,000,000 records.  Elapsed time: 00:11:34s.  Time for last 1,000,000:    3s.  Last read position: NC_045552.1_RagTag:50,328,356
+INFO	2024-07-03 09:34:14	MarkDuplicates	Tracking 1516167 as yet unmatched pairs. 20961 records in RAM.
+INFO	2024-07-03 09:34:20	MarkDuplicates	Read   176,000,000 records.  Elapsed time: 00:11:39s.  Time for last 1,000,000:    5s.  Last read position: NC_045553.1_RagTag:797,395
+INFO	2024-07-03 09:34:20	MarkDuplicates	Tracking 1508427 as yet unmatched pairs. 154917 records in RAM.
+INFO	2024-07-03 09:34:23	MarkDuplicates	Read   177,000,000 records.  Elapsed time: 00:11:42s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:9,045,722
+INFO	2024-07-03 09:34:23	MarkDuplicates	Tracking 1501806 as yet unmatched pairs. 131238 records in RAM.
+INFO	2024-07-03 09:34:26	MarkDuplicates	Read   178,000,000 records.  Elapsed time: 00:11:46s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:17,208,559
+INFO	2024-07-03 09:34:26	MarkDuplicates	Tracking 1490648 as yet unmatched pairs. 105973 records in RAM.
+INFO	2024-07-03 09:34:30	MarkDuplicates	Read   179,000,000 records.  Elapsed time: 00:11:49s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:25,336,561
+INFO	2024-07-03 09:34:30	MarkDuplicates	Tracking 1479603 as yet unmatched pairs. 79032 records in RAM.
+INFO	2024-07-03 09:34:33	MarkDuplicates	Read   180,000,000 records.  Elapsed time: 00:11:52s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:32,672,436
+INFO	2024-07-03 09:34:33	MarkDuplicates	Tracking 1468473 as yet unmatched pairs. 57370 records in RAM.
+INFO	2024-07-03 09:34:36	MarkDuplicates	Read   181,000,000 records.  Elapsed time: 00:11:55s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:39,843,540
+INFO	2024-07-03 09:34:36	MarkDuplicates	Tracking 1457619 as yet unmatched pairs. 35910 records in RAM.
+INFO	2024-07-03 09:34:39	MarkDuplicates	Read   182,000,000 records.  Elapsed time: 00:11:58s.  Time for last 1,000,000:    3s.  Last read position: NC_045553.1_RagTag:47,878,830
+INFO	2024-07-03 09:34:39	MarkDuplicates	Tracking 1443064 as yet unmatched pairs. 3412 records in RAM.
+INFO	2024-07-03 09:34:44	MarkDuplicates	Read   183,000,000 records.  Elapsed time: 00:12:04s.  Time for last 1,000,000:    5s.  Last read position: NC_045554.1_RagTag:6,205,377
+INFO	2024-07-03 09:34:44	MarkDuplicates	Tracking 1432788 as yet unmatched pairs. 146818 records in RAM.
+INFO	2024-07-03 09:34:48	MarkDuplicates	Read   184,000,000 records.  Elapsed time: 00:12:07s.  Time for last 1,000,000:    3s.  Last read position: NC_045554.1_RagTag:14,013,045
+INFO	2024-07-03 09:34:48	MarkDuplicates	Tracking 1415697 as yet unmatched pairs. 117259 records in RAM.
+INFO	2024-07-03 09:34:51	MarkDuplicates	Read   185,000,000 records.  Elapsed time: 00:12:10s.  Time for last 1,000,000:    3s.  Last read position: NC_045554.1_RagTag:21,338,499
+INFO	2024-07-03 09:34:51	MarkDuplicates	Tracking 1399723 as yet unmatched pairs. 90730 records in RAM.
+INFO	2024-07-03 09:34:54	MarkDuplicates	Read   186,000,000 records.  Elapsed time: 00:12:14s.  Time for last 1,000,000:    3s.  Last read position: NC_045554.1_RagTag:29,100,124
+INFO	2024-07-03 09:34:54	MarkDuplicates	Tracking 1384236 as yet unmatched pairs. 64790 records in RAM.
+INFO	2024-07-03 09:34:57	MarkDuplicates	Read   187,000,000 records.  Elapsed time: 00:12:17s.  Time for last 1,000,000:    3s.  Last read position: NC_045554.1_RagTag:36,178,796
+INFO	2024-07-03 09:34:57	MarkDuplicates	Tracking 1368446 as yet unmatched pairs. 39900 records in RAM.
+INFO	2024-07-03 09:35:01	MarkDuplicates	Read   188,000,000 records.  Elapsed time: 00:12:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045554.1_RagTag:43,756,007
+INFO	2024-07-03 09:35:01	MarkDuplicates	Tracking 1350685 as yet unmatched pairs. 12511 records in RAM.
+INFO	2024-07-03 09:35:08	MarkDuplicates	Read   189,000,000 records.  Elapsed time: 00:12:27s.  Time for last 1,000,000:    7s.  Last read position: NC_045555.1_RagTag:2,959,859
+INFO	2024-07-03 09:35:08	MarkDuplicates	Tracking 1339143 as yet unmatched pairs. 142458 records in RAM.
+INFO	2024-07-03 09:35:11	MarkDuplicates	Read   190,000,000 records.  Elapsed time: 00:12:31s.  Time for last 1,000,000:    3s.  Last read position: NC_045555.1_RagTag:10,652,829
+INFO	2024-07-03 09:35:11	MarkDuplicates	Tracking 1324202 as yet unmatched pairs. 117429 records in RAM.
+INFO	2024-07-03 09:35:14	MarkDuplicates	Read   191,000,000 records.  Elapsed time: 00:12:34s.  Time for last 1,000,000:    3s.  Last read position: NC_045555.1_RagTag:17,780,495
+INFO	2024-07-03 09:35:14	MarkDuplicates	Tracking 1307743 as yet unmatched pairs. 94363 records in RAM.
+INFO	2024-07-03 09:35:18	MarkDuplicates	Read   192,000,000 records.  Elapsed time: 00:12:37s.  Time for last 1,000,000:    3s.  Last read position: NC_045555.1_RagTag:25,149,602
+INFO	2024-07-03 09:35:18	MarkDuplicates	Tracking 1290649 as yet unmatched pairs. 69246 records in RAM.
+INFO	2024-07-03 09:35:21	MarkDuplicates	Read   193,000,000 records.  Elapsed time: 00:12:40s.  Time for last 1,000,000:    3s.  Last read position: NC_045555.1_RagTag:32,723,873
+INFO	2024-07-03 09:35:21	MarkDuplicates	Tracking 1270174 as yet unmatched pairs. 39559 records in RAM.
+INFO	2024-07-03 09:35:24	MarkDuplicates	Read   194,000,000 records.  Elapsed time: 00:12:43s.  Time for last 1,000,000:    3s.  Last read position: NC_045555.1_RagTag:40,033,789
+INFO	2024-07-03 09:35:24	MarkDuplicates	Tracking 1257672 as yet unmatched pairs. 17126 records in RAM.
+INFO	2024-07-03 09:35:29	MarkDuplicates	Read   195,000,000 records.  Elapsed time: 00:12:48s.  Time for last 1,000,000:    4s.  Last read position: NC_045556.1_RagTag:1,434,987
+INFO	2024-07-03 09:35:29	MarkDuplicates	Tracking 1254018 as yet unmatched pairs. 135644 records in RAM.
+INFO	2024-07-03 09:35:32	MarkDuplicates	Read   196,000,000 records.  Elapsed time: 00:12:52s.  Time for last 1,000,000:    3s.  Last read position: NC_045556.1_RagTag:9,226,985
+INFO	2024-07-03 09:35:32	MarkDuplicates	Tracking 1235005 as yet unmatched pairs. 109727 records in RAM.
+INFO	2024-07-03 09:35:45	MarkDuplicates	Read   197,000,000 records.  Elapsed time: 00:13:05s.  Time for last 1,000,000:   13s.  Last read position: NC_045556.1_RagTag:16,402,455
+INFO	2024-07-03 09:35:45	MarkDuplicates	Tracking 1213312 as yet unmatched pairs. 80400 records in RAM.
+INFO	2024-07-03 09:36:01	MarkDuplicates	Read   198,000,000 records.  Elapsed time: 00:13:20s.  Time for last 1,000,000:   15s.  Last read position: NC_045556.1_RagTag:23,921,538
+INFO	2024-07-03 09:36:01	MarkDuplicates	Tracking 1193746 as yet unmatched pairs. 50707 records in RAM.
+INFO	2024-07-03 09:36:05	MarkDuplicates	Read   199,000,000 records.  Elapsed time: 00:13:24s.  Time for last 1,000,000:    3s.  Last read position: NC_045556.1_RagTag:31,228,924
+INFO	2024-07-03 09:36:05	MarkDuplicates	Tracking 1179148 as yet unmatched pairs. 18881 records in RAM.
+INFO	2024-07-03 09:36:08	MarkDuplicates	Read   200,000,000 records.  Elapsed time: 00:13:28s.  Time for last 1,000,000:    3s.  Last read position: NC_045557.1_RagTag:2,460,652
+INFO	2024-07-03 09:36:08	MarkDuplicates	Tracking 1165152 as yet unmatched pairs. 34165 records in RAM.
+INFO	2024-07-03 09:36:12	MarkDuplicates	Read   201,000,000 records.  Elapsed time: 00:13:31s.  Time for last 1,000,000:    3s.  Last read position: NC_045557.1_RagTag:10,257,571
+INFO	2024-07-03 09:36:12	MarkDuplicates	Tracking 1148406 as yet unmatched pairs. 7362 records in RAM.
+INFO	2024-07-03 09:36:20	MarkDuplicates	Read   202,000,000 records.  Elapsed time: 00:13:40s.  Time for last 1,000,000:    8s.  Last read position: NC_045558.1_RagTag:6,220,330
+INFO	2024-07-03 09:36:20	MarkDuplicates	Tracking 1130442 as yet unmatched pairs. 393060 records in RAM.
+INFO	2024-07-03 09:36:23	MarkDuplicates	Read   203,000,000 records.  Elapsed time: 00:13:43s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:13,293,005
+INFO	2024-07-03 09:36:23	MarkDuplicates	Tracking 1113401 as yet unmatched pairs. 372743 records in RAM.
+INFO	2024-07-03 09:36:27	MarkDuplicates	Read   204,000,000 records.  Elapsed time: 00:13:46s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:20,499,178
+INFO	2024-07-03 09:36:27	MarkDuplicates	Tracking 1098631 as yet unmatched pairs. 355381 records in RAM.
+INFO	2024-07-03 09:36:30	MarkDuplicates	Read   205,000,000 records.  Elapsed time: 00:13:49s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:27,636,667
+INFO	2024-07-03 09:36:30	MarkDuplicates	Tracking 1086782 as yet unmatched pairs. 341231 records in RAM.
+INFO	2024-07-03 09:36:35	MarkDuplicates	Read   206,000,000 records.  Elapsed time: 00:13:54s.  Time for last 1,000,000:    4s.  Last read position: NC_045558.1_RagTag:34,762,749
+INFO	2024-07-03 09:36:35	MarkDuplicates	Tracking 1074534 as yet unmatched pairs. 326149 records in RAM.
+INFO	2024-07-03 09:36:38	MarkDuplicates	Read   207,000,000 records.  Elapsed time: 00:13:57s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:41,695,022
+INFO	2024-07-03 09:36:38	MarkDuplicates	Tracking 1061531 as yet unmatched pairs. 310238 records in RAM.
+INFO	2024-07-03 09:36:41	MarkDuplicates	Read   208,000,000 records.  Elapsed time: 00:14:00s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:48,631,828
+INFO	2024-07-03 09:36:41	MarkDuplicates	Tracking 1048664 as yet unmatched pairs. 293924 records in RAM.
+INFO	2024-07-03 09:36:44	MarkDuplicates	Read   209,000,000 records.  Elapsed time: 00:14:04s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:56,012,288
+INFO	2024-07-03 09:36:44	MarkDuplicates	Tracking 1032171 as yet unmatched pairs. 273055 records in RAM.
+INFO	2024-07-03 09:36:47	MarkDuplicates	Read   210,000,000 records.  Elapsed time: 00:14:07s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:63,673,435
+INFO	2024-07-03 09:36:47	MarkDuplicates	Tracking 1013273 as yet unmatched pairs. 249833 records in RAM.
+INFO	2024-07-03 09:36:51	MarkDuplicates	Read   211,000,000 records.  Elapsed time: 00:14:10s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:71,306,288
+INFO	2024-07-03 09:36:51	MarkDuplicates	Tracking 994339 as yet unmatched pairs. 224006 records in RAM.
+INFO	2024-07-03 09:36:54	MarkDuplicates	Read   212,000,000 records.  Elapsed time: 00:14:13s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:78,730,585
+INFO	2024-07-03 09:36:54	MarkDuplicates	Tracking 973635 as yet unmatched pairs. 197843 records in RAM.
+INFO	2024-07-03 09:36:57	MarkDuplicates	Read   213,000,000 records.  Elapsed time: 00:14:17s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:86,135,774
+INFO	2024-07-03 09:36:57	MarkDuplicates	Tracking 956128 as yet unmatched pairs. 175766 records in RAM.
+INFO	2024-07-03 09:37:00	MarkDuplicates	Read   214,000,000 records.  Elapsed time: 00:14:20s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:93,326,095
+INFO	2024-07-03 09:37:00	MarkDuplicates	Tracking 940463 as yet unmatched pairs. 156996 records in RAM.
+INFO	2024-07-03 09:37:04	MarkDuplicates	Read   215,000,000 records.  Elapsed time: 00:14:23s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:100,259,439
+INFO	2024-07-03 09:37:04	MarkDuplicates	Tracking 926690 as yet unmatched pairs. 139784 records in RAM.
+INFO	2024-07-03 09:37:07	MarkDuplicates	Read   216,000,000 records.  Elapsed time: 00:14:26s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:107,370,297
+INFO	2024-07-03 09:37:07	MarkDuplicates	Tracking 913642 as yet unmatched pairs. 124699 records in RAM.
+INFO	2024-07-03 09:37:10	MarkDuplicates	Read   217,000,000 records.  Elapsed time: 00:14:29s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:114,583,416
+INFO	2024-07-03 09:37:10	MarkDuplicates	Tracking 900328 as yet unmatched pairs. 109454 records in RAM.
+INFO	2024-07-03 09:37:13	MarkDuplicates	Read   218,000,000 records.  Elapsed time: 00:14:32s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:121,834,782
+INFO	2024-07-03 09:37:13	MarkDuplicates	Tracking 885958 as yet unmatched pairs. 91845 records in RAM.
+INFO	2024-07-03 09:37:16	MarkDuplicates	Read   219,000,000 records.  Elapsed time: 00:14:35s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:128,880,885
+INFO	2024-07-03 09:37:16	MarkDuplicates	Tracking 858885 as yet unmatched pairs. 60953 records in RAM.
+INFO	2024-07-03 09:37:19	MarkDuplicates	Read   220,000,000 records.  Elapsed time: 00:14:39s.  Time for last 1,000,000:    3s.  Last read position: NC_045558.1_RagTag:136,036,355
+INFO	2024-07-03 09:37:19	MarkDuplicates	Tracking 840455 as yet unmatched pairs. 37626 records in RAM.
+INFO	2024-07-03 09:37:32	MarkDuplicates	Read   221,000,000 records.  Elapsed time: 00:14:52s.  Time for last 1,000,000:   13s.  Last read position: NC_045558.1_RagTag:142,716,634
+INFO	2024-07-03 09:37:32	MarkDuplicates	Tracking 822223 as yet unmatched pairs. 9042 records in RAM.
+INFO	2024-07-03 09:37:36	MarkDuplicates	Read   222,000,000 records.  Elapsed time: 00:14:55s.  Time for last 1,000,000:    3s.  Last read position: NW_022473897.1_RagTag:152,592
+INFO	2024-07-03 09:37:36	MarkDuplicates	Tracking 798579 as yet unmatched pairs. 485 records in RAM.
+INFO	2024-07-03 09:37:50	MarkDuplicates	Read   223,000,000 records.  Elapsed time: 00:15:10s.  Time for last 1,000,000:   14s.  Last read position: Chr0_RagTag:7,754,308
+INFO	2024-07-03 09:37:50	MarkDuplicates	Tracking 773743 as yet unmatched pairs. 773743 records in RAM.
+INFO	2024-07-03 09:37:54	MarkDuplicates	Read   224,000,000 records.  Elapsed time: 00:15:13s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:13,349,570
+INFO	2024-07-03 09:37:54	MarkDuplicates	Tracking 753707 as yet unmatched pairs. 753707 records in RAM.
+INFO	2024-07-03 09:37:57	MarkDuplicates	Read   225,000,000 records.  Elapsed time: 00:15:16s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:16,587,686
+INFO	2024-07-03 09:37:57	MarkDuplicates	Tracking 739668 as yet unmatched pairs. 739668 records in RAM.
+INFO	2024-07-03 09:38:00	MarkDuplicates	Read   226,000,000 records.  Elapsed time: 00:15:20s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:22,962,441
+INFO	2024-07-03 09:38:00	MarkDuplicates	Tracking 715141 as yet unmatched pairs. 715141 records in RAM.
+INFO	2024-07-03 09:38:04	MarkDuplicates	Read   227,000,000 records.  Elapsed time: 00:15:23s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:27,962,476
+INFO	2024-07-03 09:38:04	MarkDuplicates	Tracking 691355 as yet unmatched pairs. 691355 records in RAM.
+INFO	2024-07-03 09:38:07	MarkDuplicates	Read   228,000,000 records.  Elapsed time: 00:15:27s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:33,840,583
+INFO	2024-07-03 09:38:07	MarkDuplicates	Tracking 663365 as yet unmatched pairs. 663365 records in RAM.
+INFO	2024-07-03 09:38:11	MarkDuplicates	Read   229,000,000 records.  Elapsed time: 00:15:30s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:40,016,063
+INFO	2024-07-03 09:38:11	MarkDuplicates	Tracking 638465 as yet unmatched pairs. 638465 records in RAM.
+INFO	2024-07-03 09:38:14	MarkDuplicates	Read   230,000,000 records.  Elapsed time: 00:15:33s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:46,533,889
+INFO	2024-07-03 09:38:14	MarkDuplicates	Tracking 609044 as yet unmatched pairs. 609044 records in RAM.
+INFO	2024-07-03 09:38:17	MarkDuplicates	Read   231,000,000 records.  Elapsed time: 00:15:37s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:51,416,365
+INFO	2024-07-03 09:38:17	MarkDuplicates	Tracking 583144 as yet unmatched pairs. 583144 records in RAM.
+INFO	2024-07-03 09:38:21	MarkDuplicates	Read   232,000,000 records.  Elapsed time: 00:15:40s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:56,197,573
+INFO	2024-07-03 09:38:21	MarkDuplicates	Tracking 556023 as yet unmatched pairs. 556023 records in RAM.
+INFO	2024-07-03 09:38:24	MarkDuplicates	Read   233,000,000 records.  Elapsed time: 00:15:43s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:62,070,839
+INFO	2024-07-03 09:38:24	MarkDuplicates	Tracking 523460 as yet unmatched pairs. 523460 records in RAM.
+INFO	2024-07-03 09:38:27	MarkDuplicates	Read   234,000,000 records.  Elapsed time: 00:15:47s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:67,744,169
+INFO	2024-07-03 09:38:27	MarkDuplicates	Tracking 492282 as yet unmatched pairs. 492282 records in RAM.
+INFO	2024-07-03 09:38:31	MarkDuplicates	Read   235,000,000 records.  Elapsed time: 00:15:50s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:73,479,403
+INFO	2024-07-03 09:38:31	MarkDuplicates	Tracking 458859 as yet unmatched pairs. 458859 records in RAM.
+INFO	2024-07-03 09:38:34	MarkDuplicates	Read   236,000,000 records.  Elapsed time: 00:15:53s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:80,794,279
+INFO	2024-07-03 09:38:34	MarkDuplicates	Tracking 415461 as yet unmatched pairs. 415461 records in RAM.
+INFO	2024-07-03 09:38:40	MarkDuplicates	Read   237,000,000 records.  Elapsed time: 00:16:00s.  Time for last 1,000,000:    6s.  Last read position: Chr0_RagTag:87,758,570
+INFO	2024-07-03 09:38:40	MarkDuplicates	Tracking 375473 as yet unmatched pairs. 375473 records in RAM.
+INFO	2024-07-03 09:38:44	MarkDuplicates	Read   238,000,000 records.  Elapsed time: 00:16:03s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:93,286,101
+INFO	2024-07-03 09:38:44	MarkDuplicates	Tracking 335424 as yet unmatched pairs. 335424 records in RAM.
+INFO	2024-07-03 09:38:47	MarkDuplicates	Read   239,000,000 records.  Elapsed time: 00:16:06s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:100,934,999
+INFO	2024-07-03 09:38:47	MarkDuplicates	Tracking 287463 as yet unmatched pairs. 287463 records in RAM.
+INFO	2024-07-03 09:38:50	MarkDuplicates	Read   240,000,000 records.  Elapsed time: 00:16:10s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:108,374,913
+INFO	2024-07-03 09:38:50	MarkDuplicates	Tracking 234651 as yet unmatched pairs. 234651 records in RAM.
+INFO	2024-07-03 09:38:54	MarkDuplicates	Read   241,000,000 records.  Elapsed time: 00:16:13s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:115,438,049
+INFO	2024-07-03 09:38:54	MarkDuplicates	Tracking 186170 as yet unmatched pairs. 186170 records in RAM.
+INFO	2024-07-03 09:38:57	MarkDuplicates	Read   242,000,000 records.  Elapsed time: 00:16:17s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:122,237,623
+INFO	2024-07-03 09:38:57	MarkDuplicates	Tracking 132111 as yet unmatched pairs. 132111 records in RAM.
+INFO	2024-07-03 09:39:01	MarkDuplicates	Read   243,000,000 records.  Elapsed time: 00:16:20s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:127,491,310
+INFO	2024-07-03 09:39:01	MarkDuplicates	Tracking 81475 as yet unmatched pairs. 81475 records in RAM.
+INFO	2024-07-03 09:39:04	MarkDuplicates	Read   244,000,000 records.  Elapsed time: 00:16:24s.  Time for last 1,000,000:    3s.  Last read position: Chr0_RagTag:133,609,105
+INFO	2024-07-03 09:39:04	MarkDuplicates	Tracking 19108 as yet unmatched pairs. 19108 records in RAM.
+INFO	2024-07-03 09:39:05	MarkDuplicates	Read 244217938 records. 0 pairs never matched.
+INFO	2024-07-03 09:39:28	MarkDuplicates	After buildSortedReadEndLists freeMemory: 6239500440; totalMemory: 6487212032; maxMemory: 6487212032
+INFO	2024-07-03 09:39:28	MarkDuplicates	Will retain up to 202725376 duplicate indices before spilling to disk.
+INFO	2024-07-03 09:39:29	MarkDuplicates	Traversing read pair information and detecting duplicates.
+INFO	2024-07-03 09:40:11	MarkDuplicates	Traversing fragment information and detecting duplicates.
+INFO	2024-07-03 09:41:07	MarkDuplicates	Sorting list of duplicate records.
+INFO	2024-07-03 09:41:09	MarkDuplicates	After generateDuplicateIndexes freeMemory: 4824041904; totalMemory: 6487212032; maxMemory: 6487212032
+INFO	2024-07-03 09:41:09	MarkDuplicates	Marking 19526907 records as duplicates.
+INFO	2024-07-03 09:41:09	MarkDuplicates	Found 449957 optical duplicate clusters.
+INFO	2024-07-03 09:41:09	MarkDuplicates	Reads are assumed to be ordered by: coordinate
+INFO	2024-07-03 09:43:10	MarkDuplicates	Written    10,000,000 records.  Elapsed time: 00:02:00s.  Time for last 10,000,000:  120s.  Last read position: NC_045541.1_RagTag:74,314,806
+INFO	2024-07-03 09:45:09	MarkDuplicates	Written    20,000,000 records.  Elapsed time: 00:03:59s.  Time for last 10,000,000:  119s.  Last read position: NC_045541.1_RagTag:149,961,596
+INFO	2024-07-03 09:47:10	MarkDuplicates	Written    30,000,000 records.  Elapsed time: 00:06:00s.  Time for last 10,000,000:  121s.  Last read position: NC_045542.1_RagTag:50,593,777
+INFO	2024-07-03 09:49:09	MarkDuplicates	Written    40,000,000 records.  Elapsed time: 00:07:59s.  Time for last 10,000,000:  118s.  Last read position: NC_045542.1_RagTag:126,017,467
+INFO	2024-07-03 09:51:10	MarkDuplicates	Written    50,000,000 records.  Elapsed time: 00:10:01s.  Time for last 10,000,000:  121s.  Last read position: NC_045543.1_RagTag:41,755,313
+INFO	2024-07-03 09:53:12	MarkDuplicates	Written    60,000,000 records.  Elapsed time: 00:12:02s.  Time for last 10,000,000:  121s.  Last read position: NC_045544.1_RagTag:9,803,455
+INFO	2024-07-03 09:55:11	MarkDuplicates	Written    70,000,000 records.  Elapsed time: 00:14:02s.  Time for last 10,000,000:  119s.  Last read position: NC_045544.1_RagTag:85,242,865
+INFO	2024-07-03 09:57:12	MarkDuplicates	Written    80,000,000 records.  Elapsed time: 00:16:02s.  Time for last 10,000,000:  120s.  Last read position: NC_045545.1_RagTag:2,905,682
+INFO	2024-07-03 09:59:11	MarkDuplicates	Written    90,000,000 records.  Elapsed time: 00:18:01s.  Time for last 10,000,000:  118s.  Last read position: NC_045545.1_RagTag:78,255,790
+INFO	2024-07-03 10:01:13	MarkDuplicates	Written   100,000,000 records.  Elapsed time: 00:20:04s.  Time for last 10,000,000:  122s.  Last read position: NC_045546.1_RagTag:65,706,594
+INFO	2024-07-03 10:03:15	MarkDuplicates	Written   110,000,000 records.  Elapsed time: 00:22:05s.  Time for last 10,000,000:  121s.  Last read position: NC_045547.1_RagTag:39,537,881
+INFO	2024-07-03 10:05:17	MarkDuplicates	Written   120,000,000 records.  Elapsed time: 00:24:07s.  Time for last 10,000,000:  121s.  Last read position: NC_045548.1_RagTag:24,168,203
+INFO	2024-07-03 10:07:19	MarkDuplicates	Written   130,000,000 records.  Elapsed time: 00:26:09s.  Time for last 10,000,000:  122s.  Last read position: NC_045549.1_RagTag:29,734,567
+INFO	2024-07-03 10:09:21	MarkDuplicates	Written   140,000,000 records.  Elapsed time: 00:28:11s.  Time for last 10,000,000:  121s.  Last read position: NC_045549.1_RagTag:108,397,349
+INFO	2024-07-03 10:11:21	MarkDuplicates	Written   150,000,000 records.  Elapsed time: 00:30:12s.  Time for last 10,000,000:  120s.  Last read position: NC_045550.1_RagTag:53,859,452
+INFO	2024-07-03 10:13:24	MarkDuplicates	Written   160,000,000 records.  Elapsed time: 00:32:15s.  Time for last 10,000,000:  123s.  Last read position: NC_045552.1_RagTag:39,145,235
+INFO	2024-07-03 10:15:31	MarkDuplicates	Written   170,000,000 records.  Elapsed time: 00:34:21s.  Time for last 10,000,000:  126s.  Last read position: NC_045554.1_RagTag:15,991,762
+INFO	2024-07-03 10:17:35	MarkDuplicates	Written   180,000,000 records.  Elapsed time: 00:36:26s.  Time for last 10,000,000:  124s.  Last read position: NC_045556.1_RagTag:2,464,735
+INFO	2024-07-03 10:19:40	MarkDuplicates	Written   190,000,000 records.  Elapsed time: 00:38:31s.  Time for last 10,000,000:  125s.  Last read position: NC_045558.1_RagTag:35,183,655
+INFO	2024-07-03 10:21:42	MarkDuplicates	Written   200,000,000 records.  Elapsed time: 00:40:33s.  Time for last 10,000,000:  122s.  Last read position: NC_045558.1_RagTag:113,603,285
+INFO	2024-07-03 10:23:47	MarkDuplicates	Written   210,000,000 records.  Elapsed time: 00:42:38s.  Time for last 10,000,000:  124s.  Last read position: Chr0_RagTag:32,114,809
+INFO	2024-07-03 10:25:55	MarkDuplicates	Written   220,000,000 records.  Elapsed time: 00:44:46s.  Time for last 10,000,000:  127s.  Last read position: Chr0_RagTag:99,126,358
+INFO	2024-07-03 10:27:04	MarkDuplicates	Writing complete. Closing input iterator.
+INFO	2024-07-03 10:27:04	MarkDuplicates	Duplicate Index cleanup.
+INFO	2024-07-03 10:27:04	MarkDuplicates	Getting Memory Stats.
+INFO	2024-07-03 10:27:04	MarkDuplicates	Before output close freeMemory: 6445020232; totalMemory: 6487212032; maxMemory: 6487212032
+INFO	2024-07-03 10:27:04	MarkDuplicates	Closed outputs. Getting more Memory Stats.
+INFO	2024-07-03 10:27:04	MarkDuplicates	After output close freeMemory: 5840265232; totalMemory: 5879103488; maxMemory: 6487212032
+[Wed Jul 03 10:27:04 MDT 2024] picard.sam.markduplicates.MarkDuplicates done. Elapsed time: 64.40 minutes.
+Runtime.totalMemory()=5879103488

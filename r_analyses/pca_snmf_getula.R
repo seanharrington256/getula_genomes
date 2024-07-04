@@ -1,7 +1,7 @@
 # R script to run PCA and snmf from the LEA package on getula genomes
 
 # load up stuff on cluster:
-# module load gcc r/4.2.2 rstudio
+# module load gcc/12.2.0 r/4.4.0 rstudio
 # module load udunits/2.2.28 gdal/3.6.1
 # make sure base conda isn't activated/doesn't have any weird stuff in it
 
@@ -19,11 +19,10 @@ library(rworldmap)
 
 # set up some paths
 lfmm_dir <- "/pfs/tc1/project/getpop/lfmm/"
-# ped_file <- "filtered_ratmapAll_NConly.ped"
+ped_file <- "arimap_1k_genome.ped"
 coords_file <- "/project/getpop/metadata/getula_genome_coords.csv"
 
 # ## test on a smaller chromosome at first:
-ped_file <- "rat_map_all_NC_045557.ped"
 
 
 setwd(lfmm_dir)
@@ -123,7 +122,7 @@ pdf(file = "crossentropy.pdf", width = 8, height=5)
 plot(obj.at, col = "lightblue", cex = 1.2, pch = 19)
 dev.off()
 
-k <- 2
+k <- 3
 
 ce <- cross.entropy(obj.at, K = k) 
 best.run <- which.min(ce) # find the run with the lowest cross validation error
@@ -142,8 +141,6 @@ best.run <- which.min(ce) # find the run with the lowest cross validation error
 qmatrix <- Q(obj.at, K = k, run = best.run)
 admix<-as.data.frame(qmatrix)
 
-# get the coordinate and admix data into a single dataframe
-for_pies <- cbind(snmf_coords, admix)
 
 # convert the coordinates into the target projection
 for_pies_sf <- st_as_sf(for_pies, coords = c("lon", "lat"), crs = 4326) # Create an sf object with WGS84 coordinates
@@ -159,7 +156,7 @@ num_cols <- length(grep("^V", colnames(for_pies_transformed_df))) # how many V c
 colors <- colors_6[1:num_cols]
 
 # set pie size
-pie_size <- 1
+pie_size <- 0.7
 
 # plot
 snmf_plot <- basemap +
@@ -173,6 +170,11 @@ snmf_plot <- basemap +
         axis.title.y = element_blank())  # Remove y-axis label
 snmf_plot
 
+
+# Plot to pdf 
+pdf(file = paste0("genome_snmf_K", k, ".pdf"), height = 13, width = 16)
+print(snmf_plot)
+dev.off()
 
 # Impute the missing genotypes
 impute(obj.at, geno_file, method = 'mode', K = k, run = best.run)

@@ -19,6 +19,8 @@ module load gcc/12.2.0 picard/2.26.2 samtools/1.16.1
 # Set up output directory variable
 OUTDIR=/project/getpop/bwa_ratsnake/rmd
 
+mkdir -p $OUTDIR
+
 # Set working dir to where the bam files are:
 cd /project/getpop/bwa_ratsnake
 

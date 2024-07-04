@@ -30,26 +30,62 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 
 <br>
 
+
+
+### Subsample reads for MVZ137799 - started at ~80x coverage, to get down to ~30x, subsample 180000000 reads
+
+```
+# some directory management
+cd /project/getpop/trim_out_bbduk_adapters
+mv trim_read_MVZ137799 trim_read_MVZ137799_not_downsampled
+mkdir trim_read_MVZ137799
+
+cd /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled
+
+# FASTQ R1
+seqtk sample -s 123 paired-MVZ137799_S64_L003_R1_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
+gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
+
+# FASTQ R2
+seqtk sample -s 123 paired-MVZ137799_S64_L003_R2_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
+gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
+
+mv /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled /project/getpop/
+```
+
+<br>
+
+
 ### Mapping, duplicate removal
 
 * `mapping` directory
 
-1. `BWA_to_ratsnake.slurm` runs BWA to map the trimmed reads to the Pantherophis genome from HERE.  **DROP IN LINK TO RATSNAKE GENOME**
+1. `BWA_to_ratsnake.slurm` runs BWA to map the trimmed reads to the Pantherophis genome from HERE. Also Indexes the resulting bam files. **DROP IN LINK TO RATSNAKE GENOME**
 
-2. `idx_ratmapped_bam.slurm` indexes each of the .bam files created by the previous script.
+2. `flagstat_ratmapped.slurm` runs `samtools flagstat` on each bam file to get some mapping stats.
 
-3. `flagstat_ratmapped.slurm` runs `samtools flagstat` on each bam file to get some mapping stats.
+3. `picard_rmd_ratmapped.slurm` runs `picard MarkDuplicates` to identify and remove duplicate reads.
 
-4. `picard_rmd_ratmapped.slurm` runs `picard MarkDuplicates` to identify and remove duplicate reads.
+
 
 
 <br>
 
 ### Variant calling and filtering
 
+**Make sure to bgzip all files, otherwise tabix fails for pixy**
+
+```
+bgzip -c your_file.vcf > your_file.vcf.gz
+```
+
 * `var_call` directory
 
 1. `var_call_ratmapped_all.slurm` calls variants from the bam files with duplicates removed. This is done for each scaffold of the reference genome separately here as a slurm job array.
+
+
+**1 RERUNNING NOW^**
+
 
 2. `sort_ratmapped_all_vcfs.slurm` sorts each of the resulting vcf files generated in the previous step.
 
@@ -62,7 +98,7 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` (in main `scripts` directory) to make plots.
 
 
-- **add details of filtering parameters**
+- **add details of filtering parameters** May want to use qual 20?
 
 <br>
 
@@ -203,28 +239,7 @@ Rscript plot_pixy_cmd.R /project/getpop/pixy_out100 /project/getpop/pixy_plots
 <br>
 <br>
 
-### Prepping to re-do things, starting with downsampling MVZ137799 reads
 
-# Subsample reads for MVZ137799 - started at ~80x coverage, top get down to ~30x, subsample 180000000 reads
-
-```
-# some directory management
-cd /project/getpop/trim_out_bbduk_adapters
-mv trim_read_MVZ137799 trim_read_MVZ137799_not_downsampled
-mkdir trim_read_MVZ137799
-
-cd /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled
-
-# FASTQ R1
-seqtk sample -s 123 paired-MVZ137799_S64_L003_R1_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
-gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R1_001.fastq
-
-# FASTQ R2
-seqtk sample -s 123 paired-MVZ137799_S64_L003_R2_001.fastq.gz 160000000 > ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
-gzip ../trim_read_MVZ137799/paired-MVZ137799_S64_L003_R2_001.fastq
-
-mv /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled /project/getpop/
-```
 
 <br>
 
@@ -298,7 +313,12 @@ module load gcc vcftools
 
 
 
-Try out same on 
+
+
+
+
+
+
 
 
 ## Go back and map the reads to the Arizona genome and see if coverage was better
@@ -329,16 +349,117 @@ Try out same on
 
 3. `combine_arimapAllSites_vcf.slurm` combines the individual scaffold vcf files into a single vcf of the whole genome. 
 
-**RUNNING NOW** ^
+4. `get_vcf_stats_arimapAllSites.slurm` gets some stats from the vcf file. I deleted some of the output from this that is on individual sites - files are huge
 
-4. `get_vcf_stats_arimapAllSites.slurm` SCRIPT FILE EXISTS, STILL NEEDS TO BE EDITED AND RUN
+5. `filt_vcf_pixy.slurm` filters the vcf for use in Pixy (allsites vcf) based on coverage, missing data 20%, and quality. Removes indels. **RUNNING**
+
+6. `filt_vcf_snps.slurm` filters the vcf down to just SNPs based on coverage, missing data 20%, and quality. Removes indels. **RUNNING**
+
+7. `filt_vcf_snps_2_MAC.slurm` filters the vcf from 6 down to only sites with a minor allele count at least 2 for population structure stuff
+
+8. `filt_vcf_snps_2MAC_thin.slurm` thins the vcf from 7 down to 1 snp per 10 kb window
+
+9. `filt_vcf_snps_2MAC_thin1k.slurm` thins the vcf from 7 down to 1 snp per 1 kb window
 
 
-- just to test out:
+
+- just to test out var calling without rmduplicates - very slightly higher coverage, but probably not good:
 
 `var_call_arizona_mapAllSites_NORMD.slurm` calls variants on the bam files that have not had markduplicates run
 
-`sort_arimappedAllSites_vcfs_NORMD.slurm` sorts the vcf files. **RUNNING NOW**
+`sort_arimappedAllSites_vcfs_NORMD.slurm` sorts the vcf files
 
-`combine_arimapAllSites_vcf_NORMD.slurm` combines those into whole genome NOT MADE YET
+`combine_arimapAllSites_vcf_NORMD.slurm` combines those into whole genome
+
+`get_vcf_stats_arimapAllSites_NORMD.slurm` gets idepth for the vcf file only.
+
+
+* I deleted all of the NORMD called variants - seems obvious that this is worse
+* also deleted the bam files mapped to arizona without dups removed
+
+
+
+### Arizona pixy analyses
+
+* Arimap_pixy
+
+1. `Pixy10_combined.slurm` runs pixy on the vcf containing the whole genome in a single file.
+
+- `pixy_popfiles` directory contains populations files for pixy
+- make sure vcf is tabiz indexed
+
+2. `plot_pixy_combined_chroms.R` plots the combined genome pixy output.
+
+
+
+### Arizona LFMM analyses
+
+Convert vcf file to ped, have had trouble converting vcf to SNMF/LFMM
+
+```
+cd /project/getpop/lfmm
+
+# then convert to plink
+module load miniconda3
+conda activate plink # my plink conda env
+
+
+VCF_FILE=/project/getpop/vcf_allsites_Arizona_map/filt_getula_arimap_SNPs_MAC2_1k_THIN_full_genome.vcf.gz
+plink --vcf $VCF_FILE --recode12 --out arimap_1k_genome --allow-extra-chr
+```
+
+Have been running LFMM stuff in main scripts for for it - **imputation of genoptypes for LFMM is running now**
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Is it possible/desirable to filter the invariants separately from the variants? E.g., lower cov for the invariants?
+no, doesn't seem like.
+
+Run a quick check by calculating depth at the variant sites (biallelic):
+
+
+```
+cd /project/getpop/vcf_allsites_Arizona_map
+salloc -A inbreh -t 0-05:00 --mem=200G --cpus-per-task=1
+module load gcc/12.2.0 vcftools/0.1.16
+
+OUT=/project/getpop/vcf_stats/vcf_stats_allsites_Arizona_map
+OUTFILE=vcf_stats_allsites_Arizona_map_SNPS
+
+
+vcftools --gzvcf getula_arimap_AllSites_full_genome.vcf.gz --min-alleles 2 --max-alleles 2 --depth --out $OUT/$OUTFILE
+```
+
+<br>
+
+
+
+# Ok, plans on the remapped data:
+
+Definitely going to want to drop out 
+
+- FHSM7738 (~3x coverage)
+
+Probably drop
+
+- FHSM13623 (~4x)
+- Mayybe FHSM11300 (~5x)
+
+- add in the 6x cov filter and then look an imiss before dropping anybody
+
+
+
+
+
+# For just WCH, slam out some stuff - don't super worry about removing individuals & stuff
+
+Use Arizona mapping, the filtering in there doesn't remove inds
+
 
