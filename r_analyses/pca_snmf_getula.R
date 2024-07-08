@@ -19,7 +19,7 @@ library(rworldmap)
 
 # set up some paths
 lfmm_dir <- "/pfs/tc1/project/getpop/lfmm/"
-ped_file <- "arimap_1k_genome.ped"
+ped_file <- "arimap_10k_genome.ped"
 coords_file <- "/project/getpop/metadata/getula_genome_coords.csv"
 
 # ## test on a smaller chromosome at first:

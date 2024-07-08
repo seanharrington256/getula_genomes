@@ -66,7 +66,7 @@ mv /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled /
 
 3. `picard_rmd_ratmapped.slurm` runs `picard MarkDuplicates` to identify and remove duplicate reads.
 
-
+* Deleted the bam files from before removing duplicates - don't need anymore and they take up ~600GB
 
 
 <br>
@@ -81,15 +81,14 @@ bgzip -c your_file.vcf > your_file.vcf.gz
 
 * `var_call` directory
 
-1. `var_call_ratmapped_all.slurm` calls variants from the bam files with duplicates removed. This is done for each scaffold of the reference genome separately here as a slurm job array.
-
-
-**1 RERUNNING NOW^**
-
+1. `var_call_ratmapped_allsites.slurm` calls variants from the bam files with duplicates removed. This is done for each scaffold of the reference genome separately here as a slurm job array. Calls all sites, including invariants for use in pixy genome scans.
 
 2. `sort_ratmapped_all_vcfs.slurm` sorts each of the resulting vcf files generated in the previous step.
 
 3. `combine_ratmapAll_vcf.slurm` combines the individual scaffold vcf files into a single vcf of the whole genome. 
+
+**3 RERUNNING NOW^**
+
 
 4. `get_vcf_stats_ratmapAll.slurm` gets some statistics about the vcf file of all scaffolds combined. `r_vcf_stats_ratmapAllFilt.R` will then create plots of those stats.
 
@@ -406,10 +405,20 @@ conda activate plink # my plink conda env
 
 VCF_FILE=/project/getpop/vcf_allsites_Arizona_map/filt_getula_arimap_SNPs_MAC2_1k_THIN_full_genome.vcf.gz
 plink --vcf $VCF_FILE --recode12 --out arimap_1k_genome --allow-extra-chr
+
+VCF_FILE=/project/getpop/vcf_allsites_Arizona_map/filt_getula_arimap_SNPs_MAC2_10k_THIN_full_genome.vcf.gz
+plink --vcf $VCF_FILE --recode12 --out arimap_10k_genome --allow-extra-chr
 ```
 
-Have been running LFMM stuff in main scripts for for it - **imputation of genoptypes for LFMM is running now**
+Have been running LFMM stuff in main scripts for for it.
 
+Run LFMM for aridity and precip
+
+
+**imputation finished**
+**running snmf on the smaller 10k thin file**
+
+would be nice to run RDA
 
 
 <br>

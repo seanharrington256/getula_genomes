@@ -18,7 +18,7 @@ module load gcc/12.2.0 bcftools/1.16
 cd /project/getpop/vcf_rat_map_all # set directory
 
 #Array
-for x in rat_map_all*.vcf.gz
+for x in ratmap_allsites*.vcf.gz
 do
 	files=(${files[@]} "${x}")
 done
@@ -33,5 +33,5 @@ bcftools sort -Oz $vcf -o sort_$vcf
 echo "completed file $vcf"
 
 # delete the original vcf, we don't need it anymore
-# rm $vcf
+# rm $vcf # started doing this manually afterwards in case something doesn't go right
 
