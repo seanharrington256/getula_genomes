@@ -61,11 +61,15 @@ screeplot(res_rda)
 anova.cca(res_rda, by = "axis")
 
 # variance inflation factors 
-vif.cca(cusickii_rda)
+vif.cca(res_rda)
 
-plot(cusickii_rda, scaling=3)
 
-load.rda <- summary(cusickii_rda)$species[,1:3]
+pdf(file = "rda_getula.pdf", width = 10, height = 10)
+plot(res_rda, scaling=3)
+dev.off()
+
+
+load.rda <- summary(res_rda)$species[,1:3]
 hist(load.rda[,1], main="Loadings on RDA1", breaks = 20)
 hist(load.rda[,2], main="Loadings on RDA2",breaks = 20)
 hist(load.rda[,3], main="Loadings on RDA3", breaks = 20) 
@@ -79,28 +83,28 @@ cand1 <- outliers(load.rda[,1], 3) ## 3.
 cand2 <- outliers(load.rda[,2], 3) ## 6.
 cand3 <- outliers(load.rda[,3], 3) ## 3.
 
-cusickii_rda_cand <- c(names(cand1), names(cand2), names(cand3)) ## j.st the names of the candidates
+rda_cand <- c(names(cand1), names(cand2), names(cand3)) ## j.st the names of the candidates
 
-length(cusickii_rda_cand[duplicated(cusickii_rda_cand)]) ## 7.duplicate detections (detected on multiple RDA axes)
-cusickii_rda_cand <- cusickii_rda_cand[!duplicated(cusickii_rda_cand)] ## 1.4 unique candidates 
-cusickii_rda_cand
+length(rda_cand[duplicated(rda_cand)]) ## 7.duplicate detections (detected on multiple RDA axes)
+rda_cand <- rda_cand[!duplicated(rda_cand)] ## 1.4 unique candidates 
+rda_cand
 
 # Set up the color scheme for plotting:
-bgcol  <- ifelse(colnames(lfmm.data_filt) %in% cusickii_rda_cand, 'gray32', '#00000000')
-snpcol <- ifelse(colnames(lfmm.data_filt) %in% cusickii_rda_cand, 'red', '#00000000')
+bgcol  <- ifelse(colnames(lfmm.data) %in% rda_cand, 'gray32', '#00000000')
+snpcol <- ifelse(colnames(lfmm.data) %in% rda_cand, 'red', '#00000000')
 
 ## a.es 1 & 2 - zooming in to just the SNPs here...
-plot(cusickii_rda, type="n", scaling=3, xlim=c(-1,1), ylim=c(-1,1), main="cusickii RDA, axes 1 and 2")
-points(cusickii_rda, display="species", pch=21, cex=1, col="gray32", bg='#f1eef6', scaling=3)
-points(cusickii_rda, display="species", pch=21, cex=1, col=bgcol, bg=snpcol, scaling=3)
-text(cusickii_rda, scaling=3, display="bp", col="#0868ac", cex=1)
+plot(res_rda, type="n", scaling=3, xlim=c(-1,1), ylim=c(-1,1), main="RDA, axes 1 and 2")
+points(res_rda, display="species", pch=21, cex=1, col="gray32", bg='#f1eef6', scaling=3)
+points(res_rda, display="species", pch=21, cex=1, col=bgcol, bg=snpcol, scaling=3)
+text(res_rda, scaling=3, display="bp", col="#0868ac", cex=1)
 
 ## a.es 2 & 3
 pdf("RDAaxes23.pdf", height= 8, width = 8)
-plot(cusickii_rda, type="n", scaling=3, xlim=c(-1,1), ylim=c(-1,1), choices=c(2,3), main="cusickii RDA, axes 2 and 3")
-points(cusickii_rda, display="species", pch=21, cex=1, col="gray32", bg='#f1eef6', scaling=3, choices=c(2,3))
-points(cusickii_rda, display="species", pch=21, cex=1, col=bgcol, bg=snpcol, scaling=3, choices=c(2,3))
-text(cusickii_rda, scaling=3, display="bp", col="#0868ac", cex=1, choices=c(2,3))
+plot(res_rda, type="n", scaling=3, xlim=c(-1,1), ylim=c(-1,1), choices=c(2,3))
+points(res_rda, display="species", pch=21, cex=1, col="gray32", bg='#f1eef6', scaling=3, choices=c(2,3))
+points(res_rda, display="species", pch=21, cex=1, col=bgcol, bg=snpcol, scaling=3, choices=c(2,3))
+text(res_rda, scaling=3, display="bp", col="#0868ac", cex=1, choices=c(2,3))
 dev.off()
 
 intersetcor(cusickii_rda)[,1:5]
