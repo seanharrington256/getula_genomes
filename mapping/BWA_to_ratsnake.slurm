@@ -6,32 +6,30 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=24
 #SBATCH --mem=64G
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=sharrin2@uwyo.edu
-#SBATCH -e /project/getpop/scripts/errs_outs/bwa_errs_outs/err_BWA_rat_%A_%a.err
-#SBATCH -o /project/getpop/scripts/errs_outs/bwa_errs_outs/std_BWA_rat_%A_%a.out
-#SBATCH --array=1-41
+#SBATCH -e /project/getpop/scripts/errs_outs/err_BWA_rat_%A_%a.err
+#SBATCH -o /project/getpop/scripts/errs_outs/std_BWA_rat_%A_%a.out
+#SBATCH --array=1-8
 
 
 # load modules necessary
-module load gcc/12.2.0 bwa/0.7.17 samtools/1.16.1
+module load gcc/14.2.0 bwa/0.7.17 samtools/1.20
 
 # Set working directory to where the index files and trimmed_reads directory are
-cd /project/getpop/trim_out_bbduk_adapters
+cd /project/getpop/trim_out_admera
 
 #New ref for population loci assesment and later annotation
 REF=/project/getpop/ref/ratsnake_genome_files/ratsnake_scaffold/P_alleghaniensis_concatenate_ragtag.scaffolds.fasta
 
 
-OUT_DIR=/project/getpop/bwa_ratsnake
+OUT_DIR=/project/getpop/admera_bwa_ratsnake
+mkdir -p $OUT_DIR
 
 # use a loop to find all the files in trimmed_reads that end
 #     in fastq.gz and assign them to a bash array
 
-for x in *
-do   
-  dirs=(${dirs[@]} "${x}")
-done
+dirs=(*/)
 
 
 ## For whichever SLURM_ARRAY_TASK_ID index a job is in, get the sample 
@@ -48,7 +46,8 @@ cd $sample
 # To get the output filename, we'll do a bit of extra manipulation:
 # First, strip off the stuff at the beginnig we don't want
 
-SAMP_ID=$(echo $sample | cut -d '_' -f 3)
+SAMP_ID="${sample#trim_read_}"
+SAMP_ID="${SAMP_ID%/}"
 
 # strip off the .fastq.gz and add on a .sam as the output
 # outname=${SAMP_ID}.sam
@@ -58,3 +57,4 @@ bwa mem -M -t 24 $REF paired*_R1_* paired*_R2_* | samtools view - -b | samtools 
 
 # Index the bam file
 samtools index -@ 24 $OUT_DIR/${SAMP_ID}_sort.bam
+

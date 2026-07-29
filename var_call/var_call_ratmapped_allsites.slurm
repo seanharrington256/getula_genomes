@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=30G
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=sharrin2@uwyo.edu
 #SBATCH -e /project/getpop/scripts/errs_outs/err_out_vcf/err_varcallA_ratmap_%A_%a.err
 #SBATCH -o /project/getpop/scripts/errs_outs/err_out_vcf/std_varcallA_ratmap_%A_%a.out
@@ -18,7 +18,7 @@
 
 
 #load modules
-module load gcc/12.2.0 bcftools/1.16
+module load gcc/14.2.0 bcftools/1.20
 
 ## Create directory path 
 sorted=/project/getpop/bwa_ratsnake/rmd
@@ -42,6 +42,6 @@ OUT=${OUTDIR}/ratmap_allsites
 cd $sorted
 
 #run mpileup
-bcftools mpileup --threads 12 -A -a DP,AD --regions $scaf -f $REF *.rmd.bam | bcftools call -f GQ,GP -m --threads 12 -O z -o ${OUT}_$scaf.vcf.gz
+bcftools mpileup --threads $SLURM_CPUS_PER_TASK  -a DP,AD --regions $scaf -f $REF *.rmd.bam  | bcftools call -f GQ,GP -m --threads $SLURM_CPUS_PER_TASK -O z -o ${OUT}_$scaf.vcf.gz
 
 echo "completed scaffold $scaf"

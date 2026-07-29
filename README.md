@@ -19,13 +19,50 @@ The vast majority of these are slurm scripts to be run on the Beartooth cluster 
 
 ### Raw data quality assessment and trimming
 
+
+renaming Admera samples prior to processing:
+
+- `sample_IDs_Admera_2026_06.txt` contains mapping of Admera file names to sample names
+
+```
+cd 	/project/getpop/admera_raw_data/23070D-10-01_S0_L001_R1_001.fastq.gz+_ds.c7147671943e4138ac8f5d6b663e7f38
+mapping="/project/getpop/scripts/qc_trim/sample_IDs_Admera_2026_06.txt"
+dest_base="/project/getpop/admera_raw_data"
+
+# skip the header line, read tab-separated columns
+tail -n +2 "$mapping" | while IFS=$'\t' read -r customerID sample; do
+    # strip stray whitespace / Windows carriage returns
+    customerID=$(echo "$customerID" | tr -d '[:space:]')
+    sample=$(echo "$sample" | tr -d '[:space:]')
+    [ -z "$sample" ] && continue
+
+    mkdir -p "$dest_base/$customerID"
+    for f in ${sample}_*.fastq.gz; do
+        [ -e "$f" ] || continue           # skip if no match
+        newname="${f/$sample/$customerID}"
+        cp "$f" "$dest_base/$customerID/$newname"
+    done
+done
+```
+
 * `qc_trim` directory
 
 1. `fastqc_array.slurm` runs fastqc to look at quality of the raw reads
 
+aggregate fastqc results with multiqc
+
+```
+mopdule load multiqc/1.24.1
+cd /project/getpop/fastqc/fastqc_out_admera
+multiqc .
+```
+
+
 2. `trim_array.slurm` runs Trimmomatic to trim reads for quality and to remove adapters
 
 3. `fastqc_array_bbduck_trims.slurm` runs fastqc on reads after trimming. We used the adapter file from bbduk, which is where the name of this file comes from.
+
+
 
 
 <br>
@@ -69,15 +106,17 @@ mv /project/getpop/trim_out_bbduk_adapters/trim_read_MVZ137799_not_downsampled /
 * Deleted the bam files from before removing duplicates - don't need anymore and they take up ~600GB
 
 
+
+- Up to here, have been handling the new June Admera samples separately from the rest. Now, copy the admera ones into the larger dir to call everything together so we can run some basic snmf and such (copy rather than move in case want to mess around with these independently)
+
+
+```
+cp /project/getpop/bwa_ratsnake/rmd_admera/* /project/getpop/bwa_ratsnake/rmd
+```
+
 <br>
 
 ### Variant calling and filtering
-
-**Make sure to bgzip all files, otherwise tabix fails for pixy**
-
-```
-bgzip -c your_file.vcf > your_file.vcf.gz
-```
 
 * `var_call` directory
 
@@ -85,9 +124,26 @@ bgzip -c your_file.vcf > your_file.vcf.gz
 
 2. `sort_ratmapped_all_vcfs.slurm` sorts each of the resulting vcf files generated in the previous step.
 
+RUNNING NOW ^
+
+
+
 3. `combine_ratmapAll_vcf.slurm` combines the individual scaffold vcf files into a single vcf of the whole genome. 
 
-**3 RERUNNING NOW^**
+
+## figure out how I want to filter data & make vcfs
+
+**Make sure to bgzip all files, otherwise tabix fails for pixy**
+
+```
+bgzip -c your_file.vcf > your_file.vcf.gz
+```
+
+
+
+
+
+
 
 
 4. `get_vcf_stats_ratmapAll.slurm` gets some statistics about the vcf file of all scaffolds combined. `r_vcf_stats_ratmapAllFilt.R` will then create plots of those stats.
