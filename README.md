@@ -124,11 +124,20 @@ cp /project/getpop/bwa_ratsnake/rmd_admera/* /project/getpop/bwa_ratsnake/rmd
 
 2. `sort_ratmapped_all_vcfs.slurm` sorts each of the resulting vcf files generated in the previous step.
 
-RUNNING NOW ^
-
-
-
 3. `combine_ratmapAll_vcf.slurm` combines the individual scaffold vcf files into a single vcf of the whole genome. 
+
+4. `get_vcf_stats_ratmapAll_UnFILT.slurm` gets stats for unfiltered vcf allsites file
+
+5. `filter_vcf_ratmapAll.slurm` filters the combined vcf of all scaffolds.
+
+
+
+^ RUNNING NOW 4 & 5
+
+
+6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` (in main `scripts` directory) to make plots.
+
+use `r_vcf_stats_ratmapAllFilt.R` will then create plots of stats???
 
 
 ## figure out how I want to filter data & make vcfs
@@ -139,18 +148,6 @@ RUNNING NOW ^
 bgzip -c your_file.vcf > your_file.vcf.gz
 ```
 
-
-
-
-
-
-
-
-4. `get_vcf_stats_ratmapAll.slurm` gets some statistics about the vcf file of all scaffolds combined. `r_vcf_stats_ratmapAllFilt.R` will then create plots of those stats.
-
-5. Filter vcf files: `filter_vcf_ratmapAll.slurm` filters the combined vcf of all scaffolds. `filter_each_vcf_ratmapAll.slurm` filters each of the scaffold vcf files using the same filters.
-
-6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` (in main `scripts` directory) to make plots.
 
 
 - **add details of filtering parameters** May want to use qual 20?
