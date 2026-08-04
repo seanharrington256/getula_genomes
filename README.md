@@ -130,15 +130,40 @@ cp /project/getpop/bwa_ratsnake/rmd_admera/* /project/getpop/bwa_ratsnake/rmd
 
 5. `filter_vcf_ratmapAll.slurm` filters the combined vcf of all scaffolds.
 
-
-
-^ RUNNING NOW 4 & 5
-
-
 6. `get_vcf_stats_ratmap_filtered.slurm` calculates vcf stats of the filtered whole genome vcf and then runs `r_vcf_stats_cmdline.R` (in main `scripts` directory) to make plots.
+
+
+^ Running 6 now
 
 use `r_vcf_stats_ratmapAllFilt.R` will then create plots of stats???
 
+
+
+manually thin the SNP vcf for fast, prelim analyses in sNMF
+
+
+```
+salloc -A inbreh -t 0-01:00 --mem=64G --cpus-per-task=1
+module load gcc/14.2.0 vcftools/0.1.17 samtools/1.20
+cd /project/getpop/vcf_rat_map_all
+vcftools --gzvcf filtered_NC_scafsSNP_genome.vcf.gz --thin 100000 --recode --stdout | bgzip -c > NC_scafs100kthin_genome.vcf.gz
+```
+
+To read into R for LEA, make a plink file:
+
+
+```
+salloc -A inbreh -t 0-01:00 --mem=5G --cpus-per-task=1
+cd /project/getpop/vcf_rat_map_all
+module load miniconda3
+conda activate plink # my plink conda env
+plink --vcf NC_scafs100kthin_genome.vcf.gz --recode12 --double-id --out /project/getpop/rpopgen_out/filt_NC_scafsSNP --allow-extra-chr
+
+# make a names file
+cd /project/getpop/rpopgen_out/
+cut -d " " -f 1 filt_NC_scafsSNP.ped > ind_names_lfmm.txt
+sed -i 's/\.rmd\.bam//g' ind_names_lfmm.txt
+```
 
 ## figure out how I want to filter data & make vcfs
 
@@ -153,6 +178,34 @@ bgzip -c your_file.vcf > your_file.vcf.gz
 - **add details of filtering parameters** May want to use qual 20?
 
 <br>
+
+### Running snmf
+
+
+1. `pca_snmf_getula.R` runs PCA and snmf on the data to identify population structure
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
 
 ### Genome scans: use pixy to get Fst, dxy, and pi across the genome Pixy requires a vcf file with all sites to run, need to generate this.
 

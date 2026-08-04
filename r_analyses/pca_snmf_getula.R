@@ -1,9 +1,16 @@
 # R script to run PCA and snmf from the LEA package on getula genomes
 
 # load up stuff on cluster:
-# module load gcc/12.2.0 r/4.4.0 rstudio
-# module load udunits/2.2.28 gdal/3.6.1
-# make sure base conda isn't activated/doesn't have any weird stuff in it
+
+# use conda env to install necessary packages and dependencies, because dependencies for spatial stuff are a mess
+# make the env:
+#    conda create -n r_sf -c conda-forge r-base=4.4 r-essentials r-sf gdal sqlite proj r-terra bioconda::bioconductor-lea -y
+# To use on MedBow:
+# export PATH=$PATH:/project/inbreh/conda_envs/r_sf/bin/
+# export RSTUDIO_WHICH_R=/project/inbreh/conda_envs/r_sf/lib/R/bin/R
+# export PROJ_DATA=/project/inbreh/conda_envs/r_sf/share/proj 
+# module load rstudio/2024.04.2
+# rstudio
 
 
 
@@ -14,18 +21,27 @@ library(sf)
 library(maps)
 library(mapdata)
 library(rworldmap)
+library(dplyr)
 
 
 
 # set up some paths
-lfmm_dir <- "/pfs/tc1/project/getpop/lfmm/"
-ped_file <- "arimap_10k_genome.ped"
+rout_dir <- "/project/getpop/rpopgen_out"
+ped_file <- "filt_NC_scafsSNP.ped"
 coords_file <- "/project/getpop/metadata/getula_genome_coords.csv"
 
-# ## test on a smaller chromosome at first:
+setwd(rout_dir)
 
 
-setwd(lfmm_dir)
+# ind_names <- readLines("ind_names_lfmm.txt")
+ind_names <- readLines("ind_names_lfmm.txt")
+
+
+
+
+# Output file names prefix
+outpre <- "NC15ind50km08"
+
 ind_names <- readLines("ind_names_lfmm.txt")
 
 #### Some overall setup for mapping and plotting
@@ -33,10 +49,29 @@ ind_names <- readLines("ind_names_lfmm.txt")
 # make a list of colors:
 colors_6<-c("V1" = "red", "V2" = "blue", "V3" = "hotpink", "V4" = "purple", "V5" = "orange", "V6" = "yellow")
 
+
 ## Read in coordinates for plotting farther down
 coords<-read.csv(coords_file, header=TRUE, row.names=NULL) # coordinates of everything I sequenced and many I didn't
 # make sure coords are in the same order as the genetic data
 coords <- coords[match(ind_names, coords$number),]
+
+
+###########################################################################
+### Convert the ped files into lfmm/geno format:
+###########################################################################
+##
+##   ONLY NEED TO DO THIS ONCE FOR ANY FILE!!! COMMENTED OUT IF DONE ALREADY
+###########################################################################
+# # convert the ped file
+# ped2geno(ped_file, force = FALSE)
+# ped2lfmm(ped_file, force = FALSE)
+
+lfmm_file <- gsub("ped$", "lfmm", ped_file)
+geno_file <- gsub("ped$", "geno", ped_file)
+
+
+
+
 
 
 ################################################# map data
@@ -69,11 +104,6 @@ basemap <- ggplot() +
 
 
 
-# convert the ped file
-ped2geno(ped_file, force = FALSE)
-ped2lfmm(ped_file, force = FALSE)
-lfmm_file <- gsub("ped$", "lfmm", ped_file)
-geno_file <- gsub("ped$", "geno", ped_file)
 
 # When trying to a run a PCA below, I ran into this issue for one chromosome (NC_045557):
 #   Error: SNP 8 is constant among individuals.
@@ -122,7 +152,7 @@ pdf(file = "crossentropy.pdf", width = 8, height=5)
 plot(obj.at, col = "lightblue", cex = 1.2, pch = 19)
 dev.off()
 
-k <- 3
+k <- 2
 
 ce <- cross.entropy(obj.at, K = k) 
 best.run <- which.min(ce) # find the run with the lowest cross validation error

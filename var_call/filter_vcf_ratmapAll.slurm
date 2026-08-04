@@ -21,7 +21,7 @@ cd /project/getpop/vcf_rat_map_all
 # set up the inputs:
 VCF_IN=NC_scafsAllsites_genome.vcf.gz
 VCF_OUT=filtered_$VCF_IN
-
+VCF_OUTSNP=filtered_NC_scafsSNP_genome.vcf.gz
 
 # #Array   # just running this on a single VCF presently
 # #make array
@@ -40,7 +40,7 @@ MAF=0  # set this to zero for correct calculation of pi & dxy
 MISS=0.8
 QUAL=30
 MIN_DEPTH=7
-MIN_ALLELES=2
+MIN_ALLELES=1
 MAX_ALLELES=2
 
 
@@ -53,3 +53,31 @@ $VCF_OUT
 #cd $filtered_multi_vcf
 #view
 #bcftools view -H filtered_$name.vcf.gz | wc -l
+
+
+
+####################################
+# Make a SNP vcf also 
+####################################
+
+
+#filters
+MAF=0  # set this to zero for correct calculation of pi & dxy
+MISS=0.8
+QUAL=30
+MIN_DEPTH=7
+MIN_ALLELES=2
+MAX_ALLELES=2
+
+
+#filter
+vcftools --gzvcf $VCF_IN \
+--remove-indels --maf $MAF --max-missing $MISS --minQ $QUAL \
+--minDP $MIN_DEPTH --min-alleles $MIN_ALLELES --max-alleles $MAX_ALLELES --recode --stdout | gzip -c > \
+$VCF_OUTSNP
+
+
+
+
+
+
