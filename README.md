@@ -491,7 +491,7 @@ module load gcc vcftools
 1. `Pixy10_combined.slurm` runs pixy on the vcf containing the whole genome in a single file.
 
 - `pixy_popfiles` directory contains populations files for pixy
-- make sure vcf is tabiz indexed
+- make sure vcf is tabix indexed
 
 2. `plot_pixy_combined_chroms.R` plots the combined genome pixy output.
 
